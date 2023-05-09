@@ -11,7 +11,7 @@ import { FaFacebook, FaSpotify } from "react-icons/fa";
 import { BsPlusSquareFill, BsGlobe } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
 
-import { Button } from "./components/Button";
+import { Button, SocialsButton } from "./components/Button";
 
 function Header() {
   return (
@@ -155,15 +155,15 @@ function Footer() {
           </Col>
           <Col md="6" className="p-0">
             <Container className="d-flex justify-content-end">
-              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-3">
+              <SocialsButton>
                 <AiOutlineInstagram size={20} className="" />
-              </Button>
-              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-3">
+              </SocialsButton>
+              <SocialsButton>
                 <AiOutlineTwitter size={20} className="" />
-              </Button>
-              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-3">
+              </SocialsButton>
+              <SocialsButton>
                 <FaFacebook size={20} className="" />
-              </Button>
+              </SocialsButton>
             </Container>
           </Col>
         </Row>
