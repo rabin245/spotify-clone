@@ -1,9 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { Button, Col, Container, Nav, NavItem, Navbar, Row } from "reactstrap";
-import { AiOutlineHome, AiOutlineSearch } from "react-icons/ai";
+import {
+  AiOutlineHome,
+  AiOutlineSearch,
+  AiOutlineInstagram,
+  AiOutlineTwitter,
+} from "react-icons/ai";
 import { BiLibrary } from "react-icons/bi";
-import { FaSpotify } from "react-icons/fa";
-import { BsPlusSquareFill, BsGlobe } from "react-icons/bs";
+import { FaFacebook, FaSpotify } from "react-icons/fa";
+import { BsPlusSquareFill, BsGlobe, BsFacebook } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
 
 function Header() {
@@ -102,6 +107,98 @@ function Sidebar() {
     </>
   );
 }
+function Footer() {
+  return (
+    <>
+      <Container fluid className="px-3 py-5">
+        <Row className="m-0 p-0">
+          <Col md="3" className="p-0 d-flex flex-column">
+            <h4 className="m-0 mb-2">Company</h4>
+            <a href="#" className="text-decoration-none text-white">
+              About
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Jobs
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              For the Record
+            </a>
+          </Col>
+          <Col md="3" className="p-0 d-flex flex-column">
+            <h4 className="m-0 mb-2">Communities</h4>
+            <a href="#" className="text-decoration-none text-white">
+              For Artists
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Developers
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Advertising
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Investors
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Vendors
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Spotify for Work
+            </a>
+          </Col>
+          <Col md="3" className="p-0 d-flex flex-column">
+            <h4 className="m-0 mb-2">Useful links</h4>
+            <a href="#" className="text-decoration-none text-white">
+              Support
+            </a>
+            <a href="#" className="text-decoration-none text-white">
+              Free Mobile App
+            </a>
+          </Col>
+          <Col md="3" className="p-0">
+            <Container className="d-flex">
+              <Button
+                className="shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2"
+                style={{
+                  backgroundColor: "#292828",
+                  height: "40px",
+                  width: "40px",
+                }}
+              >
+                <AiOutlineInstagram size={20} className="" />
+              </Button>
+              <Button
+                className="shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2"
+                style={{
+                  backgroundColor: "#292828",
+                  height: "40px",
+                  width: "40px",
+                }}
+              >
+                <AiOutlineTwitter size={20} className="" />
+              </Button>
+              <Button
+                className="shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2"
+                style={{
+                  backgroundColor: "#292828",
+                  height: "40px",
+                  width: "40px",
+                }}
+              >
+                <FaFacebook size={20} className="" />
+              </Button>
+            </Container>
+          </Col>
+        </Row>
+        <hr />
+        <Row className="m-0 p-0">
+          <Col md="auto" className="p-0">
+            © 2023 Spotify AB
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+}
 
 function App() {
   return (
@@ -114,6 +211,7 @@ function App() {
           <Col md={9} className="p-0 offset-3">
             <Header />
             <Outlet />
+            <Footer />
           </Col>
         </Row>
       </Container>
