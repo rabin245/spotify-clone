@@ -95,7 +95,7 @@ function Sidebar() {
                   <br />
                   <span className="fs-6 fw-light">Ads </span>
                 </div>
-                <Button className="rounded-5 border border-white bg-black text-white mb-4">
+                <Button className="rounded-5 border border-white bg-black text-white mb-4 py-2 px-4">
                   <BsGlobe size={24} className="me-1" />
                   <span className="fs-6 fw-semibold">English</span>
                 </Button>
@@ -107,12 +107,13 @@ function Sidebar() {
     </>
   );
 }
+
 function Footer() {
   return (
     <>
       <Container fluid className="px-4 py-5">
         <Row className="m-0 p-0">
-          <Col md="3" className="p-0 d-flex flex-column">
+          <Col md="2" className="p-0 d-flex flex-column">
             <h4 className="m-0 mb-2">Company</h4>
             <a href="#" className="text-decoration-none text-white">
               About
@@ -124,7 +125,7 @@ function Footer() {
               For the Record
             </a>
           </Col>
-          <Col md="3" className="p-0 d-flex flex-column">
+          <Col md="2" className="p-0 d-flex flex-column">
             <h4 className="m-0 mb-2">Communities</h4>
             <a href="#" className="text-decoration-none text-white">
               For Artists
@@ -145,7 +146,7 @@ function Footer() {
               Spotify for Work
             </a>
           </Col>
-          <Col md="3" className="p-0 d-flex flex-column">
+          <Col md="2" className="p-0 d-flex flex-column">
             <h4 className="m-0 mb-2">Useful links</h4>
             <a href="#" className="text-decoration-none text-white">
               Support
@@ -154,21 +155,21 @@ function Footer() {
               Free Mobile App
             </a>
           </Col>
-          <Col md="3" className="p-0">
-            <Container className="d-flex">
-              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2">
+          <Col md="6" className="p-0">
+            <Container className="d-flex justify-content-end">
+              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-3">
                 <AiOutlineInstagram size={20} className="" />
               </Button>
-              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2">
+              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-3">
                 <AiOutlineTwitter size={20} className="" />
               </Button>
-              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2">
+              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-3">
                 <FaFacebook size={20} className="" />
               </Button>
             </Container>
           </Col>
         </Row>
-        <hr />
+        <hr className="my-5" />
         <Row className="m-0 p-0">
           <Col md="auto" className="p-0">
             © 2023 Spotify AB
