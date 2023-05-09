@@ -8,7 +8,7 @@ const PlaylistCard = ({ id, imgSrc, title, subtitle }) => {
         <div className="position-relative">
           <img src={imgSrc} alt="..." className="w-100 rounded-3 shadow" />
           <Button className="playButton rounded-circle border-0 d-flex justify-content-center align-items-center p-2 shadow">
-            <BsFillPlayFill fill="black" size={24} />
+            <BsFillPlayFill fill="black" size={30} />
           </Button>
         </div>
         <CardBody className="m-0 p-0 mt-4">
