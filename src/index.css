@@ -65,3 +65,27 @@ p {
 .cardComp:hover {
   background-color: #292928 !important;
 }
+
+.cardSubtitle {
+  color: #747474 !important;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.playButton {
+  background-color: #1ed661 !important;
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.2s ease-in-out !important;
+}
+
+.cardComp:hover .playButton {
+  opacity: 1;
+  transform: translateY(-5px);
+}
