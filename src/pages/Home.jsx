@@ -1,4 +1,3 @@
-import { BsFillPlayFill } from "react-icons/bs";
 import {
   Button,
   Card,
@@ -8,6 +7,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
+import { PlaylistCard } from "../components/Card";
 
 const Home = () => {
   return (
@@ -29,28 +29,13 @@ const Home = () => {
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <Col key={i} md="2" className="p-0 ">
-                <Card className="cardComp border-0 rounded-3 p-4">
-                  <div className="position-relative">
-                    <img
-                      src="https://picsum.photos/200/200"
-                      alt="..."
-                      className="w-100 rounded-3 shadow"
-                    />
-                    <Button className="playButton rounded-circle border-0 d-flex justify-content-center align-items-center p-2 shadow">
-                      <BsFillPlayFill fill="black" size={24} />
-                    </Button>
-                  </div>
-                  <CardBody className="m-0 p-0 mt-4">
-                    <CardText className="m-0 fw-bold fs-5">
-                      Peaceful Piano
-                    </CardText>
-                    <CardText className="cardSubtitle m-0">
-                      Relax and indulge with beautiful piano pieces
-                    </CardText>
-                  </CardBody>
-                </Card>
-              </Col>
+              <PlaylistCard
+                key={i}
+                id={i}
+                imgSrc={"https://picsum.photos/200/200"}
+                title={"Peaceful Piano"}
+                subtitle={"Relax and indulge with beautiful piano pieces"}
+              />
             ))}
         </Row>
       </Container>
@@ -71,26 +56,13 @@ const Home = () => {
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <Col key={i} md="2" className="p-0 ">
-                <Card className="cardComp border-0 rounded-3 p-4">
-                  <div className="position-relative">
-                    <img
-                      src="https://picsum.photos/200/200"
-                      alt="..."
-                      className="w-100 rounded-3 shadow"
-                    />
-                    <Button className="playButton rounded-circle border-0 d-flex justify-content-center align-items-center p-2 shadow">
-                      <BsFillPlayFill fill="black" size={24} />
-                    </Button>
-                  </div>
-                  <CardBody className="m-0 p-0 mt-4">
-                    <CardText className="m-0 fw-bold fs-5">Chill Hits</CardText>
-                    <CardText className="cardSubtitle m-0">
-                      Kick back to the best new and recent chill tunes.
-                    </CardText>
-                  </CardBody>
-                </Card>
-              </Col>
+              <PlaylistCard
+                key={i}
+                id={i}
+                imgSrc={"https://picsum.photos/200/200"}
+                title={"Chill Hits"}
+                subtitle={"Kick back to the best new and recent chill tunes."}
+              />
             ))}
         </Row>
       </Container>
