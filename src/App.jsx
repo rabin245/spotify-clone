@@ -184,10 +184,10 @@ function App() {
     <>
       <Container fluid className="p-0">
         <Row className="m-0">
-          <Col md={3} className="position-fixed p-0">
+          <Col md={2} className="position-fixed p-0">
             <Sidebar />
           </Col>
-          <Col md={9} className="p-0 offset-3">
+          <Col md={10} className="p-0 offset-2">
             <Header />
             <Outlet />
             <Footer />
