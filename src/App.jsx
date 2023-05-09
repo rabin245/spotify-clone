@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Button, Col, Container, Nav, NavItem, Navbar, Row } from "reactstrap";
+import { Col, Container, Nav, NavItem, Navbar, Row } from "reactstrap";
 import {
   AiOutlineHome,
   AiOutlineSearch,
@@ -10,6 +10,8 @@ import { BiLibrary } from "react-icons/bi";
 import { FaFacebook, FaSpotify } from "react-icons/fa";
 import { BsPlusSquareFill, BsGlobe } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
+
+import { Button } from "./components/Button";
 
 function Header() {
   return (
@@ -26,14 +28,10 @@ function Header() {
         >
           <Nav className="">
             <NavItem className="me-2">
-              <Button className="nav--button rounded-5 bg-black text-white fw-semibold fs-6 py-2 px-4">
-                Sign up
-              </Button>
+              <Button type="normal">Sign up</Button>
             </NavItem>
             <NavItem className="">
-              <Button className="nav--button rounded-5 border border-white bg-white text-black fw-semibold fs-6 py-2 px-4">
-                Log in
-              </Button>
+              <Button type="nobg">Log in</Button>
             </NavItem>
           </Nav>
         </Container>
@@ -81,7 +79,7 @@ function Sidebar() {
               </div>
             </div>
 
-            <Container className="">
+            <Container className="mb-4">
               <div className="fs-6 text-gray d-flex flex-column ">
                 <div className="text-start mb-3">
                   <span className="fs-6 fw-light me-2">Legal </span>
@@ -95,7 +93,7 @@ function Sidebar() {
                   <br />
                   <span className="fs-6 fw-light">Ads </span>
                 </div>
-                <Button className="rounded-5 border border-white bg-black text-white mb-4 py-2 px-4">
+                <Button type="normal">
                   <BsGlobe size={24} className="me-1" />
                   <span className="fs-6 fw-semibold">English</span>
                 </Button>

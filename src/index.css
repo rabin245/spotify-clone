@@ -45,7 +45,8 @@ p {
 
 .nav--button:hover {
   scale: 1.05;
-  transition: all 0.2s;
+  border: solid 1px white !important;
+  transition: all 0.1s;
 }
 
 .footer--socialButton {
