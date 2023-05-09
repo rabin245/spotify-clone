@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import { BiLibrary } from "react-icons/bi";
 import { FaFacebook, FaSpotify } from "react-icons/fa";
-import { BsPlusSquareFill, BsGlobe, BsFacebook } from "react-icons/bs";
+import { BsPlusSquareFill, BsGlobe } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
 
 function Header() {
@@ -110,7 +110,7 @@ function Sidebar() {
 function Footer() {
   return (
     <>
-      <Container fluid className="px-3 py-5">
+      <Container fluid className="px-4 py-5">
         <Row className="m-0 p-0">
           <Col md="3" className="p-0 d-flex flex-column">
             <h4 className="m-0 mb-2">Company</h4>
@@ -156,34 +156,13 @@ function Footer() {
           </Col>
           <Col md="3" className="p-0">
             <Container className="d-flex">
-              <Button
-                className="shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2"
-                style={{
-                  backgroundColor: "#292828",
-                  height: "40px",
-                  width: "40px",
-                }}
-              >
+              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2">
                 <AiOutlineInstagram size={20} className="" />
               </Button>
-              <Button
-                className="shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2"
-                style={{
-                  backgroundColor: "#292828",
-                  height: "40px",
-                  width: "40px",
-                }}
-              >
+              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2">
                 <AiOutlineTwitter size={20} className="" />
               </Button>
-              <Button
-                className="shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2"
-                style={{
-                  backgroundColor: "#292828",
-                  height: "40px",
-                  width: "40px",
-                }}
-              >
+              <Button className="footer--socialButton shadow rounded-circle border-0 d-flex justify-content-center align-items-center p-2 me-2">
                 <FaFacebook size={20} className="" />
               </Button>
             </Container>

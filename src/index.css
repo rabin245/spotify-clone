@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424 !important;
+  background-color: #131313 !important;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -44,6 +44,24 @@ p {
 }
 
 .nav--button:hover {
-  scale: 1.1;
+  scale: 1.05;
   transition: all 0.2s;
+}
+
+.footer--socialButton {
+  background-color: rgb(41, 41, 41) !important;
+  width: 40px;
+  height: 40px;
+}
+
+.footer--socialButton:hover {
+  background-color: rgb(114, 114, 114) !important;
+}
+
+.cardComp {
+  background-color: #191919 !important;
+}
+
+.cardComp:hover {
+  background-color: #292928 !important;
 }
