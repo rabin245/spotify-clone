@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424 !important;
+  background-color: #131313 !important;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,12 +25,6 @@ body {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 h1,
@@ -40,10 +34,78 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
+  margin: 0 !important;
+}
+
+a:hover {
+  text-decoration: underline !important;
 }
 
 .nav--button:hover {
+  scale: 1.05;
+  border: solid 1px white !important;
+  transition: all 0.1s;
+}
+
+.footer--socialButton {
+  background-color: rgb(41, 41, 41) !important;
+  width: 40px;
+  height: 40px;
+}
+
+.footer--socialButton:hover {
+  background-color: rgb(114, 114, 114) !important;
+}
+
+.cardComp {
+  background-color: #191919 !important;
+}
+
+.cardComp:hover {
+  background-color: #292928 !important;
+}
+
+.cardSubtitle {
+  color: #747474 !important;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.playButton {
+  background-color: #1ed661 !important;
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.2s ease-in-out !important;
+}
+
+.cardComp:hover .playButton {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+.playButton:hover {
   scale: 1.1;
-  transition: all 0.2s;
+  background-color: #1ce265 !important;
+}
+
+.playButton:active {
+  scale: 1;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+  .homeSection--cards-wrapper {
+    overflow-x: scroll !important;
+  }
+}
+@media screen and (min-width: 759px) {
+  .homeSection--cards-wrapper {
+    overflow-x: hidden !important;
+  }
 }
