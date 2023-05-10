@@ -155,13 +155,13 @@ function Footer() {
           </Col>
           <Col md="6" className="p-0">
             <Container className="d-flex justify-content-end">
-              <SocialsButton>
+              <SocialsButton link={"#"}>
                 <AiOutlineInstagram size={20} className="" />
               </SocialsButton>
-              <SocialsButton>
+              <SocialsButton link={"#"}>
                 <AiOutlineTwitter size={20} className="" />
               </SocialsButton>
-              <SocialsButton>
+              <SocialsButton link={"#"}>
                 <FaFacebook size={20} className="" />
               </SocialsButton>
             </Container>
@@ -183,10 +183,21 @@ function App() {
     <>
       <Container fluid className="p-0">
         <Row className="m-0">
-          <Col md={2} className="position-fixed p-0">
+          <Col
+            md={4}
+            lg={3}
+            xl={2}
+            className="position-fixed p-0 d-none d-md-block"
+          >
             <Sidebar />
           </Col>
-          <Col md={10} className="p-0 offset-2">
+          <Col
+            xs={12}
+            md={8}
+            lg={9}
+            xl={10}
+            className="p-0 offset-md-4 offset-lg-3 offset-xl-2"
+          >
             <Header />
             <Outlet />
             <Footer />
