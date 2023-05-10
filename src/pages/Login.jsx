@@ -1,9 +1,7 @@
 import {
-  Button,
   Col,
   Container,
   Form,
-  FormFeedback,
   FormGroup,
   Input,
   Label,
@@ -13,9 +11,10 @@ import {
 } from "reactstrap";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaFacebook } from "react-icons/fa";
-import { SocialsAuthButton } from "../components/Button";
+import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { BsSpotify } from "react-icons/bs";
 import { useState } from "react";
+import { FormInput } from "../components/FormInput";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
@@ -69,42 +68,39 @@ const Login = () => {
 
             <Container style={{ width: "21rem", maxWidth: "100%" }}>
               <Form>
-                <FormGroup className="mt-3">
-                  <Label className="fw-semibold">Email or username</Label>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Email or username"
-                    className="authFormInput text-white bg-black border-secondary shadow"
-                  />
-                  <FormFeedback>
-                    Please enter your Spotify username or email address.
-                  </FormFeedback>
+                <FormInput
+                  label={"Email or username"}
+                  name={"email"}
+                  type={"email"}
+                  placeholder={"Email or username"}
+                  formFeedback={
+                    "Please enter your Spotify username or email address."
+                  }
+                />
 
-                  <Label className="fw-semibold mt-3">Password</Label>
-                  <Input
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    className="authFormInput text-white bg-black border-secondary"
-                  />
-                  <FormFeedback>Please enter your password.</FormFeedback>
+                <FormInput
+                  label={"Password"}
+                  name={"password"}
+                  type={"password"}
+                  placeholder={"Password"}
+                  formFeedback={"Please enter your password."}
+                />
 
-                  <FormGroup switch className="mt-3">
-                    <Input
-                      type="switch"
-                      role="switch"
-                      checked={rememberMe}
-                      onClick={() => {
-                        setRememberMe((prev) => !prev);
-                      }}
-                      className="switchButton bg-success shadow-none"
-                    />
-                    <Label check>Remember me</Label>
-                  </FormGroup>
-                  <Button className="authSubmitButton rounded-5 mt-5 w-100 mb-3 text-black py-2">
-                    <span className="fw-semibold">Log In</span>
-                  </Button>
+                <FormGroup switch className="mt-3">
+                  <Input
+                    type="switch"
+                    role="switch"
+                    checked={rememberMe}
+                    onClick={() => {
+                      setRememberMe((prev) => !prev);
+                    }}
+                    className="switchButton bg-success shadow-none"
+                  />
+                  <Label check>Remember me</Label>
+                </FormGroup>
+
+                <FormGroup>
+                  <SubmitButton title={"Log in"} />
                   <span className="d-flex justify-content-center">
                     <a href="" className="text-light">
                       Forgot your password?

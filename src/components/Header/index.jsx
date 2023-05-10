@@ -1,5 +1,6 @@
 import { Container, Nav, NavItem, Navbar } from "reactstrap";
 import { Button } from "../Button";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -16,10 +17,14 @@ export default function Header() {
         >
           <Nav className="">
             <NavItem className="me-2">
-              <Button type="normal">Sign up</Button>
+              <Link to="/signup">
+                <Button type="normal">Sign up</Button>
+              </Link>
             </NavItem>
             <NavItem className="">
-              <Button type="nobg">Log in</Button>
+              <Link to="/login">
+                <Button type="nobg">Log in</Button>
+              </Link>
             </NavItem>
           </Nav>
         </Container>
