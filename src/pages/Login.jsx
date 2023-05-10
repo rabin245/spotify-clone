@@ -15,9 +15,47 @@ import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { BsSpotify } from "react-icons/bs";
 import { useState } from "react";
 import { FormInput } from "../components/FormInput";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
+
+  const [userInputs, setUserInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  console.log(userInputs);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInputs((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { email, password } = userInputs;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log(user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("errorCode:", errorCode);
+      console.log("errorMessage:", errorMessage);
+      console.log(error);
+    }
+    console.log("submitted");
+  };
 
   return (
     <>
@@ -69,6 +107,8 @@ const Login = () => {
             <Container style={{ width: "21rem", maxWidth: "100%" }}>
               <Form>
                 <FormInput
+                  value={userInputs.email}
+                  onChange={handleChange}
                   label={"Email or username"}
                   name={"email"}
                   type={"email"}
@@ -79,6 +119,8 @@ const Login = () => {
                 />
 
                 <FormInput
+                  value={userInputs.password}
+                  onChange={handleChange}
                   label={"Password"}
                   name={"password"}
                   type={"password"}
@@ -91,16 +133,17 @@ const Login = () => {
                     type="switch"
                     role="switch"
                     checked={rememberMe}
-                    onClick={() => {
-                      setRememberMe((prev) => !prev);
-                    }}
+                    // onClick={() => {
+                    //   setRememberMe((prev) => !prev);
+                    // }}
+                    readOnly
                     className="switchButton bg-success shadow-none"
                   />
                   <Label check>Remember me</Label>
                 </FormGroup>
 
                 <FormGroup>
-                  <SubmitButton title={"Log in"} />
+                  <SubmitButton title={"Log in"} handleSubmit={handleSubmit} />
                   <span className="d-flex justify-content-center">
                     <a href="" className="text-light">
                       Forgot your password?
@@ -114,12 +157,13 @@ const Login = () => {
 
             <span className="d-flex justify-content-center text-secondary mb-5">
               Don&apos;t have an account?&nbsp;
-              <a
-                href=""
+              <Link
+                to="/signup"
+                replace={true}
                 className="text-light fw-semibold text-decoration-none"
               >
                 Sign up for Spotify
-              </a>
+              </Link>
             </span>
           </Col>
         </Container>
