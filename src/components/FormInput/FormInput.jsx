@@ -1,6 +1,7 @@
 import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 export default function FormInput({
+  children,
   label,
   name,
   type = "text",
@@ -16,6 +17,7 @@ export default function FormInput({
         placeholder={placeholder}
         className="authFormInput text-white bg-black border-secondary shadow"
       />
+      {children}
       <FormFeedback>{formFeedback}</FormFeedback>
     </FormGroup>
   );
