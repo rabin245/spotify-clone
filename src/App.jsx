@@ -111,7 +111,7 @@ function Footer() {
     <>
       <Container fluid className="px-4 py-5">
         <Row className="m-0 p-0">
-          <Col md="2" className="p-0 d-flex flex-column">
+          <Col xs={12} md={4} xl="2" className="p-0 d-flex flex-column mb-5">
             <h4 className="m-0 mb-2">Company</h4>
             <a href="#" className="text-decoration-none text-white">
               About
@@ -123,7 +123,7 @@ function Footer() {
               For the Record
             </a>
           </Col>
-          <Col md="2" className="p-0 d-flex flex-column">
+          <Col xs={12} md={4} xl="2" className="p-0 d-flex flex-column mb-5">
             <h4 className="m-0 mb-2">Communities</h4>
             <a href="#" className="text-decoration-none text-white">
               For Artists
@@ -144,7 +144,7 @@ function Footer() {
               Spotify for Work
             </a>
           </Col>
-          <Col md="2" className="p-0 d-flex flex-column">
+          <Col xs={12} md={4} xl="2" className="p-0 d-flex flex-column mb-5">
             <h4 className="m-0 mb-2">Useful links</h4>
             <a href="#" className="text-decoration-none text-white">
               Support
@@ -153,8 +153,11 @@ function Footer() {
               Free Mobile App
             </a>
           </Col>
-          <Col md="6" className="p-0">
-            <Container className="d-flex justify-content-end">
+          <Col xs={12} md={4} xl="2" className="p-0 offset-xl-4 mb-5">
+            <Container
+              fluid
+              className="p-0 d-flex gap-3 justify-content-xl-end"
+            >
               <SocialsButton link={"#"}>
                 <AiOutlineInstagram size={20} className="" />
               </SocialsButton>
