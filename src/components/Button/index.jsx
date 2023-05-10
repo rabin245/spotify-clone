@@ -1,4 +1,5 @@
 import Button from "./Button";
 import SocialsButton from "./SocialsButton";
+import SocialsAuthButton from "./SocialsAuthButton";
 
-export { Button, SocialsButton };
+export { Button, SocialsButton, SocialsAuthButton };

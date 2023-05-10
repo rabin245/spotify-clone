@@ -99,11 +99,42 @@ a:hover {
   opacity: 0.8;
 }
 
+.socialsAuthButton:hover {
+  border-color: white !important;
+}
+
+.authFormInput:focus {
+  border-color: white !important;
+  /* box-shadow: none !important; */
+}
+
+.authFormInput:hover {
+  border-color: white !important;
+}
+
+.switchButton {
+  background-color: green !important;
+}
+
+.authSubmitButton {
+  background-color: #1ed661 !important;
+}
+
+.authSubmitButton:hover {
+  scale: 1.1;
+}
+
+.authSubmitButton:active {
+  scale: 1;
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;
   }
 }
+
 @media screen and (min-width: 759px) {
   .homeSection--cards-wrapper {
     overflow-x: hidden !important;
