@@ -48,7 +48,6 @@ export default function Sidebar() {
                   <span className="fs-6 fw-light me-2">Privacy Center </span>
                   <br />
                   <span className="fs-6 fw-light me-2">Privacy Policy </span>
-                  <span className="fs-6 fw-light me-2">Privacy Policy </span>
                   <br />
                   <span className="fs-6 fw-light me-2">Cookies </span>
                   <span className="fs-6 fw-light me-2">About </span>

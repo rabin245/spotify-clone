@@ -137,6 +137,10 @@ a:hover {
   text-decoration: none !important;
 }
 
+.header--search:focus {
+  border: 1px solid white !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;

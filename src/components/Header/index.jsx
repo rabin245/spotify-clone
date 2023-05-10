@@ -1,7 +1,7 @@
 import { Container, Input, Nav, NavItem, Navbar } from "reactstrap";
 import { Button } from "../Button";
-import { Link, useLocation, useMatch, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Header() {
   const match = useMatch("/search/*");
