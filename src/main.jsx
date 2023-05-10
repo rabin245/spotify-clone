@@ -23,6 +23,10 @@ const routes = createBrowserRouter([
         path: "/search",
         element: <Search />,
       },
+      {
+        path: "/search/:query",
+        element: <Search />,
+      },
     ],
   },
   {

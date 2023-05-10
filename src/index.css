@@ -131,7 +131,9 @@ a:hover {
 }
 
 .sidebar--link,
-.sidebar--link:hover {
+.sidebar--link:hover,
+.header--link,
+.header--link:hover {
   text-decoration: none !important;
 }
 
