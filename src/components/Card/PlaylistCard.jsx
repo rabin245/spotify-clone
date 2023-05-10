@@ -1,9 +1,9 @@
 import { BsFillPlayFill } from "react-icons/bs";
 import { Button, Card, CardBody, CardText, Col } from "reactstrap";
 
-const PlaylistCard = ({ id, imgSrc, title, subtitle }) => {
+const PlaylistCard = ({ imgSrc, title, subtitle }) => {
   return (
-    <Col md="2" className="p-0">
+    <Col lg={3} md={4} xs={3} className="p-0">
       <Card className="cardComp border-0 rounded-3 p-4">
         <div className="position-relative">
           <img src={imgSrc} alt="..." className="w-100 rounded-3 shadow" />

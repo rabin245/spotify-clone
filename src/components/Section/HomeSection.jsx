@@ -1,4 +1,4 @@
-import { Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import { PlaylistCard } from "../Card";
 
 const HomeSection = ({ title, cards }) => {
@@ -16,17 +16,16 @@ const HomeSection = ({ title, cards }) => {
           SHOW ALL
         </a>
       </div>
-      <Row className="mt-3 gap-1 px-1">
+      <div className="homeSection--cards-wrapper d-flex mt-3 gap-2 px-1">
         {cards.map((item, i) => (
           <PlaylistCard
             key={i}
-            id={i}
             imgSrc={item.imgSrc}
             title={item.title}
             subtitle={item.subtitle}
           />
         ))}
-      </Row>
+      </div>
     </Container>
   );
 };

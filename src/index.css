@@ -98,3 +98,14 @@ a:hover {
   scale: 1;
   opacity: 0.8;
 }
+
+@media screen and (max-width: 768px) {
+  .homeSection--cards-wrapper {
+    overflow-x: scroll !important;
+  }
+}
+@media screen and (min-width: 759px) {
+  .homeSection--cards-wrapper {
+    overflow-x: hidden !important;
+  }
+}
