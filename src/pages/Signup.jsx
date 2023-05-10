@@ -1,10 +1,8 @@
 import { BsSpotify } from "react-icons/bs";
 import {
-  Button,
   Col,
   Container,
   Form,
-  FormFeedback,
   FormGroup,
   FormText,
   Input,
@@ -15,8 +13,56 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { FormInput, FormRadio } from "../components/FormInput";
+import { auth } from "../firebase/firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
+  const [userInputs, setUserInputs] = useState({
+    email: "",
+    password: "",
+    username: "",
+    gender: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInputs((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { email, password } = userInputs;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      updateProfile(user, {
+        displayName: userInputs.username,
+      });
+
+      console.log(user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("errorCode:", errorCode);
+      console.log("errorMessage:", errorMessage);
+      console.log(error);
+    }
+
+    console.log("submitted");
+  };
+
+  console.log(userInputs);
+
   return (
     <>
       <Container>
@@ -64,6 +110,8 @@ const SignUpPage = () => {
           <Container style={{ width: "29rem", maxWidth: "100%" }}>
             <Form>
               <FormInput
+                value={userInputs.email}
+                onChange={handleChange}
                 label={"What's your email?"}
                 type={"email"}
                 name={"email"}
@@ -74,6 +122,8 @@ const SignUpPage = () => {
               />
 
               <FormInput
+                value={userInputs.password}
+                onChange={handleChange}
                 label={"Create a password"}
                 name={"password"}
                 type={"password"}
@@ -82,6 +132,8 @@ const SignUpPage = () => {
               />
 
               <FormInput
+                value={userInputs.username}
+                onChange={handleChange}
                 label={"What's should we call you?"}
                 name={"username"}
                 type={"text"}
@@ -97,21 +149,45 @@ const SignUpPage = () => {
                 What&apos;s your gender?
               </Label>
               <div className="d-flex">
-                <FormRadio id={"male"} name={"gender"} label={"Male"} />
+                <FormRadio
+                  id={"male"}
+                  name={"gender"}
+                  label={"Male"}
+                  value={"Male"}
+                  checked={userInputs.gender === "Male"}
+                  onChange={handleChange}
+                />
 
-                <FormRadio id={"female"} name={"gender"} label={"Female"} />
+                <FormRadio
+                  id={"female"}
+                  name={"gender"}
+                  label={"Female"}
+                  value={"Female"}
+                  checked={userInputs.gender === "Female"}
+                  onChange={handleChange}
+                />
 
                 <FormRadio
                   id={"non-binary"}
                   name={"gender"}
                   label={"Non-binary"}
+                  value={"Non-binary"}
+                  checked={userInputs.gender === "Non-binary"}
+                  onChange={handleChange}
                 />
 
-                <FormRadio id={"others"} name={"gender"} label={"Others"} />
+                <FormRadio
+                  id={"others"}
+                  name={"gender"}
+                  label={"Others"}
+                  value={"Others"}
+                  checked={userInputs.gender === "Others"}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="d-flex justify-content-center">
-                <SubmitButton title={"Sign up"} />
+                <SubmitButton handleSubmit={handleSubmit} title={"Sign up"} />
               </div>
 
               <FormGroup check>
@@ -140,9 +216,13 @@ const SignUpPage = () => {
 
             <span className="d-flex justify-content-center text-secondary my-4">
               Have an account?&nbsp;
-              <a href="" className="text-light fw-semibold">
+              <Link
+                to="/login"
+                replace={true}
+                className="text-light fw-semibold text-decoration-none"
+              >
                 Log in.
-              </a>
+              </Link>
             </span>
           </Container>
         </Col>
