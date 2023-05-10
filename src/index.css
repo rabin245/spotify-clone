@@ -130,6 +130,11 @@ a:hover {
   opacity: 0.8;
 }
 
+.sidebar--link,
+.sidebar--link:hover {
+  text-decoration: none !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;

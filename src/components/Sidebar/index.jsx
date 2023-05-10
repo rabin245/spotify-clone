@@ -5,6 +5,7 @@ import { FaSpotify } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { Container } from "reactstrap";
 import { Button } from "../Button";
+import NavLink from "./NavLink";
 
 export default function Sidebar() {
   return (
@@ -19,28 +20,23 @@ export default function Sidebar() {
               </div>
               <div>
                 <Container className="d-flex flex-column">
-                  <div className="fw-semibold d-flex align-items-center mb-3">
+                  <NavLink title={"Home"} navTo={"/"}>
                     <AiOutlineHome size={24} className="me-3" />
-                    Home
-                  </div>
-                  <div className="fw-semibold d-flex align-items-center mb-3">
+                  </NavLink>
+                  <NavLink title={"Search"} navTo={"/search"}>
                     <AiOutlineSearch size={24} className="me-3" />
-                    Search
-                  </div>
-                  <div className="fw-semibold d-flex align-items-center mb-3">
+                  </NavLink>
+                  <NavLink title={"Library"} navTo={"/"}>
                     <BiLibrary size={24} className="me-3" />
-                    Library
-                  </div>
+                  </NavLink>
                 </Container>
                 <Container className="d-flex flex-column mt-3 mb-auto">
-                  <div className="fw-semibold d-flex align-items-center mb-3">
+                  <NavLink title={"Create Playlist"} navTo={"/"}>
                     <BsPlusSquareFill size={24} className="me-3" />
-                    Create Playlist
-                  </div>
-                  <div className="fw-semibold d-flex align-items-center mb-3">
+                  </NavLink>
+                  <NavLink title={"Liked Songs"} navTo={"/"}>
                     <FcLike size={24} className="me-3" />
-                    Liked Songs
-                  </div>
+                  </NavLink>
                 </Container>
               </div>
             </div>
