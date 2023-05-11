@@ -130,6 +130,17 @@ a:hover {
   opacity: 0.8;
 }
 
+.sidebar--link,
+.sidebar--link:hover,
+.header--link,
+.header--link:hover {
+  text-decoration: none !important;
+}
+
+.header--search:focus {
+  border: 1px solid white !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;

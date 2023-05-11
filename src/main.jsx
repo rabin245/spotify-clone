@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
+import Search from "./pages/Search.jsx";
 import { RecoilRoot } from "recoil";
 import ProtectedAuthRoute from "./routes/ProtectedAuthRoute.jsx";
 import NeedAuthRoute from "./routes/NeedAuthRoute.jsx";
@@ -20,6 +21,14 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+      {
+        path: "/search/:query",
+        element: <Search />,
       },
       {
         path: "/library",
