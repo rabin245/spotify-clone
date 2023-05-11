@@ -13,10 +13,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { FormInput, FormRadio } from "../components/FormInput";
-import { auth } from "../firebase/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { loggedInUserAtom } from "../recoilState";
+import { useSetRecoilState } from "recoil";
+import useAuth from "../hooks/useAuth";
 
 const SignUpPage = () => {
   const [userInputs, setUserInputs] = useState({
@@ -24,7 +25,12 @@ const SignUpPage = () => {
     password: "",
     username: "",
     gender: "",
+    formError: "",
   });
+
+  const setUser = useSetRecoilState(loggedInUserAtom);
+
+  const { loading, error, user, signupUser } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,34 +40,17 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { email, password } = userInputs;
+    const { email, password, username } = userInputs;
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      const user = userCredential.user;
-
-      updateProfile(user, {
-        displayName: userInputs.username,
-      });
-
-      console.log(user);
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("errorCode:", errorCode);
-      console.log("errorMessage:", errorMessage);
-      console.log(error);
-    }
-
-    console.log("submitted");
+    await signupUser(email, password, username, setUserInputs);
   };
 
-  console.log(userInputs);
+  useEffect(() => {
+    console.log("running effect");
+    setUser(user);
+  }, [user, setUser]);
+
+  // console.log(loading, user, error);
 
   return (
     <>
@@ -116,9 +105,8 @@ const SignUpPage = () => {
                 type={"email"}
                 name={"email"}
                 placeholder={"Email or username"}
-                formFeedback={
-                  "Please enter your Spotify username or email address."
-                }
+                formFeedback={"Please enter your email address."}
+                invalid={userInputs.formError === "email"}
               />
 
               <FormInput
@@ -128,7 +116,8 @@ const SignUpPage = () => {
                 name={"password"}
                 type={"password"}
                 placeholder={"Password"}
-                formFeedback={"Please enter your password."}
+                formFeedback={"Password must be at least 6 characters."}
+                invalid={userInputs.formError === "password"}
               />
 
               <FormInput
@@ -138,9 +127,8 @@ const SignUpPage = () => {
                 name={"username"}
                 type={"text"}
                 placeholder={"Enter a profile name"}
-                formFeedback={
-                  "Please enter your Spotify username or email address."
-                }
+                formFeedback={"Please enter a username."}
+                invalid={userInputs.formError === "username"}
               >
                 <FormText>This appears on your profile.</FormText>
               </FormInput>
@@ -187,8 +175,16 @@ const SignUpPage = () => {
               </div>
 
               <div className="d-flex justify-content-center">
-                <SubmitButton handleSubmit={handleSubmit} title={"Sign up"} />
+                <SubmitButton
+                  handleSubmit={handleSubmit}
+                  title={loading ? "Loading..." : "Sign up"}
+                />
               </div>
+              {error && (
+                <div className="text-danger text-center fw-bold mb-2">
+                  {error}
+                </div>
+              )}
 
               <FormGroup check>
                 <Input
@@ -200,13 +196,13 @@ const SignUpPage = () => {
                 <Label check for="other">
                   I agree to the{" "}
                   <span>
-                    <a href="" style={{ color: "#1ed661 " }}>
+                    <a href="#" style={{ color: "#1ed661" }}>
                       Spotify Terms and Conditions of Use
                     </a>
                   </span>{" "}
                   and&nbsp;
                   <span>
-                    <a href="" style={{ color: "#1ed661 " }}>
+                    <a href="#" style={{ color: "#1ed661" }}>
                       Privacy Policy.
                     </a>
                   </span>
