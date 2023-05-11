@@ -67,7 +67,7 @@ const useAuth = () => {
 
       saveToSession("loggedInUser", user);
 
-      navigate("/", { replace: true });
+      navigate(0, { replace: true });
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -97,7 +97,7 @@ const useAuth = () => {
 
       saveToSession("loggedInUser", user);
 
-      navigate("/", { replace: true });
+      navigate(0, { replace: true });
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -108,12 +108,22 @@ const useAuth = () => {
     setLoading(false);
   };
 
+  const logOut = async () => {
+    console.log("logging out");
+    await auth.signOut();
+    setUser(null);
+    saveToSession("loggedInUser", null);
+    navigate(0);
+    navigate("/", { replace: true });
+  };
+
   return {
     loading,
     error,
     user,
     signupUser,
     loginUser,
+    logOut,
   };
 };
 

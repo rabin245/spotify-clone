@@ -1,5 +1,5 @@
 import { Container, Input, Nav, NavItem, Navbar } from "reactstrap";
-import { Button } from "../Button";
+import { AvatarButton, Button } from "../Button";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -23,12 +23,50 @@ export default function Header() {
   const user = useRecoilValue(loggedInUserAtom);
   console.log(user);
 
+  const navItems = user ? (
+    <Nav className="d-flex align-items-center">
+      <NavItem className="me-2">
+        <a
+          href="https://open.spotify.com/download"
+          target="__blank"
+          className="nav--button-link"
+        >
+          <Button type="normal">Install App</Button>
+        </a>
+      </NavItem>
+      <NavItem>
+        <AvatarButton>
+          <img
+            src={user.avatar ?? "https://picsum.photos/200"}
+            alt="avatar"
+            className="rounded-circle"
+            width="33"
+            height="33"
+          />
+        </AvatarButton>
+      </NavItem>
+    </Nav>
+  ) : (
+    <Nav>
+      <NavItem className="me-2">
+        <Link to="/signup" className="nav--button-link">
+          <Button type="normal">Sign up</Button>
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/login" className="nav--button-link">
+          <Button type="nobg">Log in</Button>
+        </Link>
+      </NavItem>
+    </Nav>
+  );
+
   return (
     <>
       <Navbar
         dark={true}
         sticky="top"
-        className=""
+        className="py-3"
         style={{ backgroundColor: "#070707" }}
       >
         <Container
@@ -51,18 +89,7 @@ export default function Header() {
             />
           )}
 
-          <Nav className="">
-            <NavItem className="me-2">
-              <Link to="/signup" className="header--link">
-                <Button type="normal">Sign up</Button>
-              </Link>
-            </NavItem>
-            <NavItem className="">
-              <Link to="/login" className="header--link">
-                <Button type="nobg">Log in</Button>
-              </Link>
-            </NavItem>
-          </Nav>
+          {navItems}
         </Container>
       </Navbar>
     </>
