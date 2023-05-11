@@ -7,6 +7,9 @@ export default function FormInput({
   type = "text",
   placeholder,
   formFeedback,
+  value,
+  onChange,
+  invalid,
 }) {
   return (
     <FormGroup className="mt-3">
@@ -16,6 +19,9 @@ export default function FormInput({
         type={type}
         placeholder={placeholder}
         className="authFormInput text-white bg-black border-secondary shadow"
+        value={value}
+        onChange={onChange}
+        invalid={invalid}
       />
       {children}
       <FormFeedback>{formFeedback}</FormFeedback>

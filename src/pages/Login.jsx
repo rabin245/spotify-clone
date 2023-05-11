@@ -15,9 +15,34 @@ import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { BsSpotify } from "react-icons/bs";
 import { useState } from "react";
 import { FormInput } from "../components/FormInput";
+import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
+
+  const [userInputs, setUserInputs] = useState({
+    email: "",
+    password: "",
+    formError: "",
+  });
+
+  const { loading, error, user, loginUser } = useAuth();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInputs((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { email, password } = userInputs;
+
+    await loginUser(email, password, setUserInputs);
+  };
+
+  console.log(loading, user, error);
 
   return (
     <>
@@ -69,6 +94,8 @@ const Login = () => {
             <Container style={{ width: "21rem", maxWidth: "100%" }}>
               <Form>
                 <FormInput
+                  value={userInputs.email}
+                  onChange={handleChange}
                   label={"Email or username"}
                   name={"email"}
                   type={"email"}
@@ -76,14 +103,18 @@ const Login = () => {
                   formFeedback={
                     "Please enter your Spotify username or email address."
                   }
+                  invalid={userInputs.formError === "email"}
                 />
 
                 <FormInput
+                  value={userInputs.password}
+                  onChange={handleChange}
                   label={"Password"}
                   name={"password"}
                   type={"password"}
                   placeholder={"Password"}
                   formFeedback={"Please enter your password."}
+                  invalid={userInputs.formError === "password"}
                 />
 
                 <FormGroup switch className="mt-3">
@@ -91,16 +122,25 @@ const Login = () => {
                     type="switch"
                     role="switch"
                     checked={rememberMe}
-                    onClick={() => {
-                      setRememberMe((prev) => !prev);
-                    }}
+                    // onClick={() => {
+                    //   setRememberMe((prev) => !prev);
+                    // }}
+                    readOnly
                     className="switchButton bg-success shadow-none"
                   />
                   <Label check>Remember me</Label>
                 </FormGroup>
 
                 <FormGroup>
-                  <SubmitButton title={"Log in"} />
+                  <SubmitButton
+                    title={loading ? "Loading..." : "Log in"}
+                    handleSubmit={handleSubmit}
+                  />
+                  {error && (
+                    <div className="text-danger text-center fw-bold mb-2">
+                      Wrong email or password
+                    </div>
+                  )}
                   <span className="d-flex justify-content-center">
                     <a href="" className="text-light">
                       Forgot your password?
@@ -114,12 +154,13 @@ const Login = () => {
 
             <span className="d-flex justify-content-center text-secondary mb-5">
               Don&apos;t have an account?&nbsp;
-              <a
-                href=""
+              <Link
+                to="/signup"
+                replace={true}
                 className="text-light fw-semibold text-decoration-none"
               >
                 Sign up for Spotify
-              </a>
+              </Link>
             </span>
           </Col>
         </Container>
