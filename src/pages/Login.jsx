@@ -15,9 +15,8 @@ import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { BsSpotify } from "react-icons/bs";
 import { useState } from "react";
 import { FormInput } from "../components/FormInput";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebase";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
@@ -25,9 +24,10 @@ const Login = () => {
   const [userInputs, setUserInputs] = useState({
     email: "",
     password: "",
+    formError: "",
   });
 
-  console.log(userInputs);
+  const { loading, error, user, loginUser } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,23 +39,10 @@ const Login = () => {
 
     const { email, password } = userInputs;
 
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      console.log(user);
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("errorCode:", errorCode);
-      console.log("errorMessage:", errorMessage);
-      console.log(error);
-    }
-    console.log("submitted");
+    await loginUser(email, password, setUserInputs);
   };
+
+  console.log(loading, user, error);
 
   return (
     <>
@@ -116,6 +103,7 @@ const Login = () => {
                   formFeedback={
                     "Please enter your Spotify username or email address."
                   }
+                  invalid={userInputs.formError === "email"}
                 />
 
                 <FormInput
@@ -126,6 +114,7 @@ const Login = () => {
                   type={"password"}
                   placeholder={"Password"}
                   formFeedback={"Please enter your password."}
+                  invalid={userInputs.formError === "password"}
                 />
 
                 <FormGroup switch className="mt-3">
@@ -143,7 +132,15 @@ const Login = () => {
                 </FormGroup>
 
                 <FormGroup>
-                  <SubmitButton title={"Log in"} handleSubmit={handleSubmit} />
+                  <SubmitButton
+                    title={loading ? "Loading..." : "Log in"}
+                    handleSubmit={handleSubmit}
+                  />
+                  {error && (
+                    <div className="text-danger text-center fw-bold mb-2">
+                      Wrong email or password
+                    </div>
+                  )}
                   <span className="d-flex justify-content-center">
                     <a href="" className="text-light">
                       Forgot your password?

@@ -13,10 +13,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { FormInput, FormRadio } from "../components/FormInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { loggedInUserAtom } from "../recoilState";
-import { useSetRecoilState } from "recoil";
 import useAuth from "../hooks/useAuth";
 
 const SignUpPage = () => {
@@ -27,8 +25,6 @@ const SignUpPage = () => {
     gender: "",
     formError: "",
   });
-
-  const setUser = useSetRecoilState(loggedInUserAtom);
 
   const { loading, error, user, signupUser } = useAuth();
 
@@ -45,12 +41,7 @@ const SignUpPage = () => {
     await signupUser(email, password, username, setUserInputs);
   };
 
-  useEffect(() => {
-    console.log("running effect");
-    setUser(user);
-  }, [user, setUser]);
-
-  // console.log(loading, user, error);
+  console.log(loading, user, error);
 
   return (
     <>

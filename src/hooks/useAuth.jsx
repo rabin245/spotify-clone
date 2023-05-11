@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { loggedInUserAtom } from "../recoilState";
 
 const useAuth = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useRecoilState(loggedInUserAtom);
 
   const navigate = useNavigate();
 
@@ -40,13 +46,39 @@ const useAuth = () => {
         email,
         password
       );
+
       setUser(response.user);
 
-      await updateProfile(user, {
-        displayName: username,
-      });
+      // not working for some reason
 
-      console.log("response", user);
+      // const authUser = auth.currentUser;
+      // await updateProfile(authUser, {
+      //   displayName: username,
+      // });
+
+      console.log("user", response.user);
+
+      navigate("/", { replace: true });
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("errorCode:", errorCode);
+      console.log("errorMessage:", errorMessage);
+      setError(errorCode);
+    }
+    setLoading(false);
+  };
+
+  const loginUser = async (email, password, setUserInputs) => {
+    if (!validateForm(email, password, null, setUserInputs)) return;
+
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      setUser(response.user);
+
+      console.log("user", response.user);
 
       navigate("/", { replace: true });
     } catch (error) {
@@ -64,6 +96,7 @@ const useAuth = () => {
     error,
     user,
     signupUser,
+    loginUser,
   };
 };
 
