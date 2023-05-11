@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
+import { RecoilRoot } from "recoil";
 
 const routes = createBrowserRouter([
   {
@@ -32,6 +33,8 @@ const routes = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <RecoilRoot>
+      <RouterProvider router={routes} />
+    </RecoilRoot>
   </React.StrictMode>
 );
