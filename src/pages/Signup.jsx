@@ -1,10 +1,8 @@
 import { BsSpotify } from "react-icons/bs";
 import {
-  Button,
   Col,
   Container,
   Form,
-  FormFeedback,
   FormGroup,
   FormText,
   Input,
@@ -15,8 +13,36 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { SocialsAuthButton, SubmitButton } from "../components/Button";
 import { FormInput, FormRadio } from "../components/FormInput";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const SignUpPage = () => {
+  const [userInputs, setUserInputs] = useState({
+    email: "",
+    password: "",
+    username: "",
+    gender: "",
+    formError: "",
+  });
+
+  const { loading, error, user, signupUser } = useAuth();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInputs((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { email, password, username } = userInputs;
+
+    await signupUser(email, password, username, setUserInputs);
+  };
+
+  console.log(loading, user, error);
+
   return (
     <>
       <Container>
@@ -64,31 +90,36 @@ const SignUpPage = () => {
           <Container style={{ width: "29rem", maxWidth: "100%" }}>
             <Form>
               <FormInput
+                value={userInputs.email}
+                onChange={handleChange}
                 label={"What's your email?"}
                 type={"email"}
                 name={"email"}
                 placeholder={"Email or username"}
-                formFeedback={
-                  "Please enter your Spotify username or email address."
-                }
+                formFeedback={"Please enter your email address."}
+                invalid={userInputs.formError === "email"}
               />
 
               <FormInput
+                value={userInputs.password}
+                onChange={handleChange}
                 label={"Create a password"}
                 name={"password"}
                 type={"password"}
                 placeholder={"Password"}
-                formFeedback={"Please enter your password."}
+                formFeedback={"Password must be at least 6 characters."}
+                invalid={userInputs.formError === "password"}
               />
 
               <FormInput
+                value={userInputs.username}
+                onChange={handleChange}
                 label={"What's should we call you?"}
                 name={"username"}
                 type={"text"}
                 placeholder={"Enter a profile name"}
-                formFeedback={
-                  "Please enter your Spotify username or email address."
-                }
+                formFeedback={"Please enter a username."}
+                invalid={userInputs.formError === "username"}
               >
                 <FormText>This appears on your profile.</FormText>
               </FormInput>
@@ -97,22 +128,54 @@ const SignUpPage = () => {
                 What&apos;s your gender?
               </Label>
               <div className="d-flex">
-                <FormRadio id={"male"} name={"gender"} label={"Male"} />
+                <FormRadio
+                  id={"male"}
+                  name={"gender"}
+                  label={"Male"}
+                  value={"Male"}
+                  checked={userInputs.gender === "Male"}
+                  onChange={handleChange}
+                />
 
-                <FormRadio id={"female"} name={"gender"} label={"Female"} />
+                <FormRadio
+                  id={"female"}
+                  name={"gender"}
+                  label={"Female"}
+                  value={"Female"}
+                  checked={userInputs.gender === "Female"}
+                  onChange={handleChange}
+                />
 
                 <FormRadio
                   id={"non-binary"}
                   name={"gender"}
                   label={"Non-binary"}
+                  value={"Non-binary"}
+                  checked={userInputs.gender === "Non-binary"}
+                  onChange={handleChange}
                 />
 
-                <FormRadio id={"others"} name={"gender"} label={"Others"} />
+                <FormRadio
+                  id={"others"}
+                  name={"gender"}
+                  label={"Others"}
+                  value={"Others"}
+                  checked={userInputs.gender === "Others"}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="d-flex justify-content-center">
-                <SubmitButton title={"Sign up"} />
+                <SubmitButton
+                  handleSubmit={handleSubmit}
+                  title={loading ? "Loading..." : "Sign up"}
+                />
               </div>
+              {error && (
+                <div className="text-danger text-center fw-bold mb-2">
+                  {error}
+                </div>
+              )}
 
               <FormGroup check>
                 <Input
@@ -124,13 +187,13 @@ const SignUpPage = () => {
                 <Label check for="other">
                   I agree to the{" "}
                   <span>
-                    <a href="" style={{ color: "#1ed661 " }}>
+                    <a href="#" style={{ color: "#1ed661" }}>
                       Spotify Terms and Conditions of Use
                     </a>
                   </span>{" "}
                   and&nbsp;
                   <span>
-                    <a href="" style={{ color: "#1ed661 " }}>
+                    <a href="#" style={{ color: "#1ed661" }}>
                       Privacy Policy.
                     </a>
                   </span>
@@ -140,9 +203,13 @@ const SignUpPage = () => {
 
             <span className="d-flex justify-content-center text-secondary my-4">
               Have an account?&nbsp;
-              <a href="" className="text-light fw-semibold">
+              <Link
+                to="/login"
+                replace={true}
+                className="text-light fw-semibold text-decoration-none"
+              >
                 Log in.
-              </a>
+              </Link>
             </span>
           </Container>
         </Col>

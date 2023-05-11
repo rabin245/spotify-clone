@@ -3,6 +3,9 @@ import { Button } from "../Button";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import { loggedInUserAtom } from "../../recoilState";
+import { useRecoilValue } from "recoil";
+
 export default function Header() {
   const match = useMatch("/search/*");
   const navigate = useNavigate();
@@ -16,6 +19,9 @@ export default function Header() {
       navigate(`/search/${e.target.value}`, { replace: true });
     }
   };
+
+  const user = useRecoilValue(loggedInUserAtom);
+  console.log(user);
 
   return (
     <>

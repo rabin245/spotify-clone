@@ -8,6 +8,9 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Search from "./pages/Search.jsx";
+import { RecoilRoot } from "recoil";
+import ProtectedAuthRoute from "./routes/ProtectedAuthRoute.jsx";
+import NeedAuthRoute from "./routes/NeedAuthRoute.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -27,20 +30,54 @@ const routes = createBrowserRouter([
         path: "/search/:query",
         element: <Search />,
       },
+      {
+        path: "/library",
+        element: (
+          <NeedAuthRoute>
+            <div>Library</div>
+          </NeedAuthRoute>
+        ),
+      },
+      {
+        path: "/playlist/new",
+        element: (
+          <NeedAuthRoute>
+            <div>New Playlist</div>
+          </NeedAuthRoute>
+        ),
+      },
+      {
+        path: "/liked",
+        element: (
+          <NeedAuthRoute>
+            <div>Liked</div>
+          </NeedAuthRoute>
+        ),
+      },
     ],
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <ProtectedAuthRoute>
+        <Signup />
+      </ProtectedAuthRoute>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <ProtectedAuthRoute>
+        <Login />
+      </ProtectedAuthRoute>
+    ),
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <RecoilRoot>
+      <RouterProvider router={routes} />
+    </RecoilRoot>
   </React.StrictMode>
 );
