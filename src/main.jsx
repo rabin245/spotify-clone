@@ -8,6 +8,7 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import { RecoilRoot } from "recoil";
+import ProtectedAuthRoute from "./routes/ProtectedAuthRoute.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -23,11 +24,19 @@ const routes = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <ProtectedAuthRoute>
+        <Signup />
+      </ProtectedAuthRoute>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <ProtectedAuthRoute>
+        <Login />
+      </ProtectedAuthRoute>
+    ),
   },
 ]);
 

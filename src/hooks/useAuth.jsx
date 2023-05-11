@@ -8,6 +8,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loggedInUserAtom } from "../recoilState";
+import saveToSession from "../utils/saveToSession";
 
 const useAuth = () => {
   const [loading, setLoading] = useState(false);
@@ -58,6 +59,14 @@ const useAuth = () => {
 
       console.log("user", response.user);
 
+      const user = {
+        uid: response.user.uid,
+        email: response.user.email,
+        // displayName: username,
+      };
+
+      saveToSession("loggedInUser", user);
+
       navigate("/", { replace: true });
     } catch (error) {
       const errorCode = error.code;
@@ -79,6 +88,14 @@ const useAuth = () => {
       setUser(response.user);
 
       console.log("user", response.user);
+
+      const user = {
+        uid: response.user.uid,
+        email: response.user.email,
+        // displayName: username,
+      };
+
+      saveToSession("loggedInUser", user);
 
       navigate("/", { replace: true });
     } catch (error) {

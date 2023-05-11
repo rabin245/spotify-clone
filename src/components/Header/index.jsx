@@ -2,7 +2,13 @@ import { Container, Nav, NavItem, Navbar } from "reactstrap";
 import { Button } from "../Button";
 import { Link } from "react-router-dom";
 
+import { loggedInUserAtom } from "../../recoilState";
+import { useRecoilValue } from "recoil";
+
 export default function Header() {
+  const user = useRecoilValue(loggedInUserAtom);
+  console.log(user);
+
   return (
     <>
       <Navbar
