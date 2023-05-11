@@ -26,15 +26,15 @@ export default function Sidebar() {
                   <NavLink title={"Search"} navTo={"/search"}>
                     <AiOutlineSearch size={24} className="me-3" />
                   </NavLink>
-                  <NavLink title={"Library"} navTo={"/"}>
+                  <NavLink title={"Library"} navTo={"/library"}>
                     <BiLibrary size={24} className="me-3" />
                   </NavLink>
                 </Container>
                 <Container className="d-flex flex-column mt-3 mb-auto">
-                  <NavLink title={"Create Playlist"} navTo={"/"}>
+                  <NavLink title={"Create Playlist"} navTo={"/playlist/new"}>
                     <BsPlusSquareFill size={24} className="me-3" />
                   </NavLink>
-                  <NavLink title={"Liked Songs"} navTo={"/"}>
+                  <NavLink title={"Liked Songs"} navTo={"/liked"}>
                     <FcLike size={24} className="me-3" />
                   </NavLink>
                 </Container>
