@@ -1,6 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currentSelectedSongAtom, songState } from "../../recoilState";
 import { AiOutlineHeart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const TableSongCard = ({ songid, index }) => {
   const song = useRecoilValue(songState(songid));
@@ -31,12 +32,31 @@ const TableSongCard = ({ songid, index }) => {
             }}
           />
           <div>
-            <h6 className="m-0 fw-bold text-white">{song.name}</h6>
-            <p className="m-0">{song.artist}</p>
+            <h6 className="m-0 fw-bold text-white">
+              <Link
+                to={`/album/${song.albumId}`}
+                className="playlistpage--table-row-link"
+              >
+                {song.name}
+              </Link>
+            </h6>
+            <p className="m-0">
+              {song.artist}
+              {song.featuredArtists.length > 0 && (
+                <span>, {song.featuredArtists.join(", ")}</span>
+              )}
+            </p>
           </div>
         </div>
       </td>
-      <td>{song.album}</td>
+      <td>
+        <Link
+          to={`/album/${song.albumId}`}
+          className="playlistpage--table-row-link"
+        >
+          {song.album}
+        </Link>
+      </td>
       <td>random date</td>
       <td>
         <div

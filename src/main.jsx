@@ -36,6 +36,10 @@ const routes = createBrowserRouter([
         element: <Playlist />,
       },
       {
+        path: "/album/:id",
+        element: <div>Album</div>,
+      },
+      {
         path: "/library",
         element: (
           <NeedAuthRoute>

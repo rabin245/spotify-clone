@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { playlistState } from "../recoilState";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Col, Container, Row, Table } from "reactstrap";
 import SpotifyIcon from "../assets/svg/spotify.svg";
 import PlayButton from "../components/Button/PlayButton";
