@@ -11,6 +11,7 @@ import Search from "./pages/Search.jsx";
 import { RecoilRoot } from "recoil";
 import ProtectedAuthRoute from "./routes/ProtectedAuthRoute.jsx";
 import NeedAuthRoute from "./routes/NeedAuthRoute.jsx";
+import Playlist from "./pages/Playlist.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const routes = createBrowserRouter([
       {
         path: "/search/:query",
         element: <Search />,
+      },
+      {
+        path: "/playlist/:id",
+        element: <Playlist />,
       },
       {
         path: "/library",
