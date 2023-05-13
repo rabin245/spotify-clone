@@ -139,12 +139,41 @@ a:hover {
 .header--link,
 .header--link:hover,
 .nav--button-link,
-.nav--button-link:hover {
+.nav--button-link:hover,
+.card-link:hover {
   text-decoration: none !important;
+}
+
+.header {
+  background-color: #070707 !important;
+}
+
+.transparent-header {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.1s linear !important;
 }
 
 .header--search:focus {
   border: 1px solid white !important;
+}
+
+.card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.playlistpage {
+  position: relative;
+  top: -76px;
+}
+
+.playlistpage--banner {
+  background: linear-gradient(rgb(104, 121, 138) 0%, transparent 100%);
+  padding-top: 76px;
+}
+.playlistpage--banner-spotifyicon {
+  width: 24px;
+  height: 24px;
 }
 
 @media screen and (max-width: 768px) {

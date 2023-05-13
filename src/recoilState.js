@@ -34,11 +34,14 @@ export const playlistState = atomFamily({
   }),
 });
 
-export const songState = atomFamily({
-  key: "song",
-  default: {},
-  get: (id) => async () => {
-    const response = await axios.get(`http://localhost:3000/songs/${id}`);
-    return response.data;
-  },
+export const songsState = atomFamily({
+  key: "songs",
+  default: selectorFamily({
+    get:
+      (id) =>
+      async ({ get }) => {
+        const response = await axios.get(`http://localhost:3000/songs/${id}`);
+        return response.data;
+      },
+  }),
 });
