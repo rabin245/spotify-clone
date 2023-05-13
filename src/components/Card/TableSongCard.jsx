@@ -3,6 +3,7 @@ import { currentSelectedSongAtom, songState } from "../../recoilState";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BsFillPlayFill } from "react-icons/bs";
+import { UncontrolledTooltip } from "reactstrap";
 
 const TableSongCard = ({ songid, index }) => {
   const song = useRecoilValue(songState(songid));
@@ -65,7 +66,7 @@ const TableSongCard = ({ songid, index }) => {
           {song.album}
         </Link>
       </td>
-      <td>random date</td>
+      <td>4 days ago</td>
       <td>
         <div
           style={{
@@ -76,7 +77,11 @@ const TableSongCard = ({ songid, index }) => {
           <AiOutlineHeart
             size={20}
             className="playlistpage--table-row-follow me-5"
+            id={`song-${songid}-like`}
           />
+          <UncontrolledTooltip placement="top" target={`song-${songid}-like`}>
+            Save to your library
+          </UncontrolledTooltip>
           <span>{song.duration}</span>
         </div>
       </td>

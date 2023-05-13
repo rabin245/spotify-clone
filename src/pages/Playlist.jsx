@@ -71,10 +71,10 @@ const Playlist = () => {
 
             <div className="playlistpage--banner-buttons d-flex align-items-center py-4 px-4">
               <div className="playlistpage--banner-button me-4">
-                <PlayButton size={40} />
+                <PlayButton size={35} />
               </div>
               <div className="playlistpage--banner-button">
-                <AiOutlineHeart size={40} />
+                <AiOutlineHeart size={35} />
               </div>
             </div>
           </div>

@@ -192,6 +192,7 @@ a:hover {
 .playlistpage--table-row-active {
   background-color: #303235 !important;
   color: white !important;
+  box-shadow: 0 0 0 1px #303235 !important;
 }
 
 td {
@@ -215,6 +216,7 @@ td {
 .playlistpage--table-row:hover .playlistpage--table-row-follow,
 .playlistpage--table-row-active .playlistpage--table-row-follow {
   visibility: visible !important;
+  cursor: pointer;
 }
 
 .playlistpage--table-row-index-wrapper {
