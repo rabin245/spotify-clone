@@ -8,6 +8,7 @@ import { useRecoilValue } from "recoil";
 
 export default function Header() {
   const match = useMatch("/search/*");
+
   const navigate = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -21,7 +22,7 @@ export default function Header() {
   };
 
   const user = useRecoilValue(loggedInUserAtom);
-  console.log(user);
+  // console.log(user);
 
   const navItems = user ? (
     <Nav className="d-flex align-items-center">
@@ -61,14 +62,19 @@ export default function Header() {
     </Nav>
   );
 
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  const headerStyle = !match && scrollY < 250 ? "transparent-header" : "";
+
   return (
     <>
-      <Navbar
-        dark={true}
-        sticky="top"
-        className="py-3"
-        style={{ backgroundColor: "#070707" }}
-      >
+      <Navbar dark={true} sticky="top" className={`header py-3 ${headerStyle}`}>
         <Container
           fluid
           className={`p-0 d-flex align-items-center 
