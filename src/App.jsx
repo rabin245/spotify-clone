@@ -3,6 +3,7 @@ import { Col, Container, Row } from "reactstrap";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
+import { Suspense } from "react";
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
             className="p-0 offset-md-4 offset-lg-3 offset-xl-2"
           >
             <Header />
-            <Outlet />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
             <Footer />
           </Col>
         </Row>
