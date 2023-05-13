@@ -217,6 +217,29 @@ td {
   visibility: visible !important;
 }
 
+.playlistpage--table-row-index-wrapper {
+  margin-left: 0.8rem !important;
+  cursor: pointer;
+}
+
+.playlistpage--table-row-playicon {
+  display: none !important;
+}
+
+.playlistpage--table-row:hover .playlistpage--table-row-playicon,
+.playlistpage--table-row-active .playlistpage--table-row-playicon {
+  display: block !important;
+}
+
+.playlistpage--table-row-index {
+  padding: 2px !important;
+}
+
+.playlistpage--table-row:hover .playlistpage--table-row-index,
+.playlistpage--table-row-active .playlistpage--table-row-index {
+  display: none !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;

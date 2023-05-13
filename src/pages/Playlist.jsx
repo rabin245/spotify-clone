@@ -91,7 +91,15 @@ const Playlist = () => {
                 borderBottom: "solid 1px #393C3E",
               }}
             >
-              <th>#</th>
+              <th>
+                <div
+                  style={{
+                    marginLeft: "0.8rem",
+                  }}
+                >
+                  #
+                </div>
+              </th>
               <th>Title</th>
               <th>Album</th>
               <th>Date Added</th>
