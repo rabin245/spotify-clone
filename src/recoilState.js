@@ -12,8 +12,6 @@ export const defaultPlaylistsAtom = atom({
     key: "defaultPlaylists/Default",
     get: async () => {
       const response = await axios.get("http://localhost:3000/playlists");
-      console.log(response.data);
-
       return response.data;
     },
   }),
@@ -34,14 +32,17 @@ export const playlistState = atomFamily({
   }),
 });
 
-export const songsState = atomFamily({
-  key: "songs",
+export const songState = atomFamily({
+  key: "song",
   default: selectorFamily({
-    get:
-      (id) =>
-      async ({ get }) => {
-        const response = await axios.get(`http://localhost:3000/songs/${id}`);
-        return response.data;
-      },
+    get: (id) => async () => {
+      const response = await axios.get(`http://localhost:3000/songs/${id}`);
+      return response.data;
+    },
   }),
+});
+
+export const currentSelectedSongAtom = atom({
+  key: "currentSelectedSong",
+  default: null,
 });

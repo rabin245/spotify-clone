@@ -80,6 +80,9 @@ a:hover {
 
 .playButton {
   background-color: #1ed661 !important;
+}
+
+.card--playButton {
   position: absolute;
   right: 10px;
   bottom: 0;
@@ -88,7 +91,7 @@ a:hover {
   transition: all 0.2s ease-in-out !important;
 }
 
-.cardComp:hover .playButton {
+.cardComp:hover .card--playButton {
   opacity: 1;
   transform: translateY(-10px);
 }
@@ -171,9 +174,38 @@ a:hover {
   background: linear-gradient(rgb(104, 121, 138) 0%, transparent 100%);
   padding-top: 76px;
 }
+
 .playlistpage--banner-spotifyicon {
   width: 24px;
   height: 24px;
+}
+
+.playlistpage--banner-buttons {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.playlistpage--table-row {
+  cursor: pointer !important;
+  color: #b3b3b3 !important;
+}
+
+.playlistpage--table-row:hover,
+.playlistpage--table-row-active {
+  background-color: #303235 !important;
+  color: white !important;
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+.playlistpage--table-row-follow {
+  visibility: hidden !important;
+}
+
+.playlistpage--table-row:hover .playlistpage--table-row-follow,
+.playlistpage--table-row-active .playlistpage--table-row-follow {
+  visibility: visible !important;
 }
 
 @media screen and (max-width: 768px) {

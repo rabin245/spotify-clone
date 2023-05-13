@@ -70,7 +70,7 @@ export default function Header() {
 
   window.addEventListener("scroll", handleScroll);
 
-  const headerStyle = !match && scrollY < 250 ? "transparent-header" : "";
+  const headerStyle = !match && scrollY < 400 ? "transparent-header" : "";
 
   return (
     <>
