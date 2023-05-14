@@ -90,15 +90,32 @@ export const albumState = atomFamily({
 export const searchResultsState = selectorFamily({
   key: "searchResults",
   get: (query) => async () => {
-    const artists = await axios.get(`http://localhost:3000/artists?q=${query}`);
     const albums = await axios.get(`http://localhost:3000/albums?q=${query}`);
     const songs = await axios.get(`http://localhost:3000/songs?q=${query}`);
     const playlists = await axios.get(
       `http://localhost:3000/playlists?q=${query}`
     );
 
+    const artistIds = songs.data.map((song) => song.artistId);
+    const artistPromises = artistIds.map(async (id) => {
+      const response = await axios.get(
+        `http://localhost:3000/artists/?id=${id}`
+      );
+      return response.data;
+    });
+
+    const response = await Promise.all(artistPromises);
+
+    let artists = response.reduce((acc, artist) => {
+      const existingArtist = acc.find((a) => a.id === artist[0].id);
+      if (!existingArtist) {
+        acc.push(artist[0]);
+      }
+      return acc;
+    });
+
     return {
-      artists: artists.data,
+      artists: artists,
       albums: albums.data,
       songs: songs.data,
       playlists: playlists.data,
