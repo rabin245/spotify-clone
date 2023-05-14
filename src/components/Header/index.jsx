@@ -1,13 +1,23 @@
-import { Container, Input, Nav, NavItem, Navbar } from "reactstrap";
+import {
+  Container,
+  Input,
+  InputGroup,
+  InputGroupText,
+  Nav,
+  NavItem,
+  Navbar,
+} from "reactstrap";
 import { AvatarButton, Button } from "../Button";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { loggedInUserAtom } from "../../recoilState";
 import { useRecoilValue } from "recoil";
+import { FaSearch } from "react-icons/fa";
 
 export default function Header() {
   const match = useMatch("/search/*");
+
   const navigate = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -21,7 +31,7 @@ export default function Header() {
   };
 
   const user = useRecoilValue(loggedInUserAtom);
-  console.log(user);
+  // console.log(user);
 
   const navItems = user ? (
     <Nav className="d-flex align-items-center">
@@ -61,14 +71,19 @@ export default function Header() {
     </Nav>
   );
 
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  const headerStyle = !match && scrollY < 400 ? "transparent-header" : "";
+
   return (
     <>
-      <Navbar
-        dark={true}
-        sticky="top"
-        className="py-3"
-        style={{ backgroundColor: "#070707" }}
-      >
+      <Navbar dark={true} sticky="top" className={`header py-3 ${headerStyle}`}>
         <Container
           fluid
           className={`p-0 d-flex align-items-center 
@@ -77,16 +92,21 @@ export default function Header() {
                     } `}
         >
           {match && (
-            <Input
-              autoFocus={true}
-              type="search"
-              name="search"
-              id="search"
-              value={search}
-              onChange={handleSearch}
-              placeholder="What do you want to listen to?"
-              className="header--search ms-2 rounded-5 shadow-none bg-dark text-white border-0 w-50"
-            />
+            <InputGroup className="header--search ms-2 rounded-5 bg-dark w-50">
+              <InputGroupText className="bg-transparent text-white border-0 p-0 ps-3">
+                <FaSearch size={18} />
+              </InputGroupText>
+              <Input
+                autoFocus={true}
+                type="search"
+                name="search"
+                id="search"
+                value={search}
+                onChange={handleSearch}
+                placeholder="What do you want to listen to?"
+                className="rounded-5 shadow-none bg-transparent text-white border-0"
+              />
+            </InputGroup>
           )}
 
           {navItems}

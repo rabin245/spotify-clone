@@ -1,7 +1,7 @@
 import { Container } from "reactstrap";
 import { PlaylistCard } from "../Card";
 
-const HomeSection = ({ title, cards }) => {
+const HomeSection = ({ title, playlistInfo }) => {
   return (
     <Container fluid className="p-0 my-4">
       <div className="d-flex justify-content-between align-items-end">
@@ -17,13 +17,8 @@ const HomeSection = ({ title, cards }) => {
         </a>
       </div>
       <div className="homeSection--cards-wrapper d-flex mt-3 gap-2 px-1">
-        {cards.map((item, i) => (
-          <PlaylistCard
-            key={i}
-            imgSrc={item.imgSrc}
-            title={item.title}
-            subtitle={item.subtitle}
-          />
+        {playlistInfo.map((item) => (
+          <PlaylistCard key={item.id} id={item.id} />
         ))}
       </div>
     </Container>

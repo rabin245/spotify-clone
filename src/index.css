@@ -80,6 +80,9 @@ a:hover {
 
 .playButton {
   background-color: #1ed661 !important;
+}
+
+.card--playButton {
   position: absolute;
   right: 10px;
   bottom: 0;
@@ -88,7 +91,7 @@ a:hover {
   transition: all 0.2s ease-in-out !important;
 }
 
-.cardComp:hover .playButton {
+.cardComp:hover .card--playButton {
   opacity: 1;
   transform: translateY(-10px);
 }
@@ -139,12 +142,104 @@ a:hover {
 .header--link,
 .header--link:hover,
 .nav--button-link,
-.nav--button-link:hover {
+.nav--button-link:hover,
+.card-link:hover {
   text-decoration: none !important;
+}
+
+.header {
+  background-color: #070707 !important;
+}
+
+.transparent-header {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.1s linear !important;
 }
 
 .header--search:focus {
   border: 1px solid white !important;
+}
+
+.card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.playlistpage {
+  position: relative;
+  top: -76px;
+}
+
+.playlistpage--banner {
+  background: linear-gradient(rgb(104, 121, 138) 0%, transparent 100%);
+  padding-top: 76px;
+}
+
+.playlistpage--banner-spotifyicon {
+  width: 24px;
+  height: 24px;
+}
+
+.playlistpage--banner-buttons {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.playlistpage--table-row {
+  color: #b3b3b3 !important;
+}
+
+.playlistpage--table-row:hover,
+.playlistpage--table-row-active {
+  background-color: #303235 !important;
+  color: white !important;
+  box-shadow: 0 0 0 1px #303235 !important;
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+.playlistpage--table-row-link {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.playlistpage--table-row-link:hover {
+  color: inherit !important;
+  text-decoration: underline !important;
+}
+
+.playlistpage--table-row-follow {
+  visibility: hidden !important;
+}
+
+.playlistpage--table-row:hover .playlistpage--table-row-follow,
+.playlistpage--table-row-active .playlistpage--table-row-follow {
+  visibility: visible !important;
+  cursor: pointer;
+}
+
+.playlistpage--table-row-index-wrapper {
+  margin-left: 0.8rem !important;
+  cursor: pointer;
+}
+
+.playlistpage--table-row-playicon {
+  display: none !important;
+}
+
+.playlistpage--table-row:hover .playlistpage--table-row-playicon,
+.playlistpage--table-row-active .playlistpage--table-row-playicon {
+  display: block !important;
+}
+
+.playlistpage--table-row-index {
+  padding: 2px !important;
+}
+
+.playlistpage--table-row:hover .playlistpage--table-row-index,
+.playlistpage--table-row-active .playlistpage--table-row-index {
+  display: none !important;
 }
 
 @media screen and (max-width: 768px) {
