@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Container } from "reactstrap";
-import { PlaylistCard } from "../components/Card";
+import { SectionCard } from "../components/Card";
 import { useRecoilValue } from "recoil";
 import { defaultPlaylistsAtom } from "../recoilState";
 
@@ -18,7 +18,7 @@ const Search = () => {
           </div>
           <div className="d-flex mt-3 gap-2 px-1 flex-wrap">
             {defaultPlaylists.map((playlist) => (
-              <PlaylistCard key={playlist.id} id={playlist.id} />
+              <SectionCard key={playlist.id} id={playlist.id} />
             ))}
           </div>
         </Container>

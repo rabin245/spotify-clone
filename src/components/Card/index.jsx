@@ -1,3 +1,3 @@
-import PlaylistCard from "./PlaylistCard";
+import SectionCard from "./SectionCard";
 
-export { PlaylistCard };
+export { SectionCard };
