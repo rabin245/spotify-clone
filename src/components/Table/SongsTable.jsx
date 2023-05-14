@@ -1,8 +1,19 @@
 import { Container, Table } from "reactstrap";
 import { BsStopwatch } from "react-icons/bs";
 import TableSongCard from "../Card/TableSongCard";
+import { currentSelectedSongAtom } from "../../recoilState";
+import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 
 const SongsTable = ({ songsList, type = "playlist" }) => {
+  const [currentSelectedSong, setCurrentSelectedSong] = useRecoilState(
+    currentSelectedSongAtom
+  );
+
+  useEffect(() => {
+    setCurrentSelectedSong(null);
+  }, [songsList]);
+
   return (
     <Container fluid className="p-4 m-0">
       <Table responsive={true} borderless={true}>
@@ -37,10 +48,10 @@ const SongsTable = ({ songsList, type = "playlist" }) => {
             >
               <div
                 style={{
-                  marginRight: "2rem",
+                  marginRight: "4rem",
                 }}
               >
-                <BsStopwatch size={22} />
+                <BsStopwatch size={20} />
               </div>
             </th>
           </tr>
@@ -52,6 +63,8 @@ const SongsTable = ({ songsList, type = "playlist" }) => {
               songid={songid}
               index={index + 1}
               type={type}
+              currentSelectedSong={currentSelectedSong}
+              setCurrentSelectedSong={setCurrentSelectedSong}
             />
           ))}
         </tbody>

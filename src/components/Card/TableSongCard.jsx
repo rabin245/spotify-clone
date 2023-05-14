@@ -1,15 +1,18 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { currentSelectedSongAtom, songState } from "../../recoilState";
+import { useRecoilValue } from "recoil";
+import { songState } from "../../recoilState";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { BsFillPlayFill } from "react-icons/bs";
+import { BsFillPlayFill, BsThreeDots } from "react-icons/bs";
 import { UncontrolledTooltip } from "reactstrap";
 
-const TableSongCard = ({ songid, index, type }) => {
+const TableSongCard = ({
+  songid,
+  index,
+  type,
+  currentSelectedSong,
+  setCurrentSelectedSong,
+}) => {
   const song = useRecoilValue(songState(songid));
-  const [currentSelectedSong, setCurrentSelectedSong] = useRecoilState(
-    currentSelectedSongAtom
-  );
 
   return (
     <tr
@@ -75,18 +78,29 @@ const TableSongCard = ({ songid, index, type }) => {
         <div
           style={{
             marginRight: "2rem",
+            gap: "1rem",
           }}
           className="d-flex align-items-center justify-content-end"
         >
           <AiOutlineHeart
             size={20}
-            className="playlistpage--table-row-follow me-5"
+            className="playlistpage--table-row-follow"
             id={`song-${songid}-like`}
           />
           <UncontrolledTooltip placement="top" target={`song-${songid}-like`}>
             Save to your library
           </UncontrolledTooltip>
-          <span>{song.duration}</span>
+          <span
+            style={{
+              fontSize: "0.8rem",
+              paddingTop: "4px",
+            }}
+          >
+            {song.duration}
+          </span>
+          <span>
+            <BsThreeDots size={20} />
+          </span>
         </div>
       </td>
     </tr>

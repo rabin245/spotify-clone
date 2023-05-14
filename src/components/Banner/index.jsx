@@ -2,6 +2,7 @@ import { Col, Row } from "reactstrap";
 import SpotifyIcon from "../../assets/svg/spotify.svg";
 import PlayButton from "../Button/PlayButton";
 import { AiOutlineHeart } from "react-icons/ai";
+import { BsThreeDots } from "react-icons/bs";
 
 const Banner = ({
   image_url,
@@ -71,12 +72,15 @@ const Banner = ({
           </Col>
         </Row>
 
-        <div className="playlistpage--banner-buttons d-flex align-items-center py-4 px-4">
-          <div className="playlistpage--banner-button me-4">
+        <div className="playlistpage--banner-buttons d-flex gap-4 align-items-center py-4 px-4">
+          <div className="playlistpage--banner-button">
             <PlayButton size={35} />
           </div>
           <div className="playlistpage--banner-button">
             <AiOutlineHeart size={35} />
+          </div>
+          <div className="playlistpage--banner-button">
+            <BsThreeDots size={35} />
           </div>
         </div>
       </div>
