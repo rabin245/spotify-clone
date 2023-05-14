@@ -86,3 +86,22 @@ export const albumState = atomFamily({
       },
   }),
 });
+
+export const searchResultsState = selectorFamily({
+  key: "searchResults",
+  get: (query) => async () => {
+    const artists = await axios.get(`http://localhost:3000/artists?q=${query}`);
+    const albums = await axios.get(`http://localhost:3000/albums?q=${query}`);
+    const songs = await axios.get(`http://localhost:3000/songs?q=${query}`);
+    const playlists = await axios.get(
+      `http://localhost:3000/playlists?q=${query}`
+    );
+
+    return {
+      artists: artists.data,
+      albums: albums.data,
+      songs: songs.data,
+      playlists: playlists.data,
+    };
+  },
+});
