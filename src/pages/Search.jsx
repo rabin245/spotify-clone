@@ -3,7 +3,7 @@ import { Col, Container, Row } from "reactstrap";
 import { SectionCard, SongCard } from "../components/Card";
 import { useRecoilValue } from "recoil";
 import { defaultPlaylistsAtom, searchResultsState } from "../recoilState";
-import { TopResultsSection } from "../components/Section";
+import { HomeSection, TopResultsSection } from "../components/Section";
 
 const Search = () => {
   const { query } = useParams();
@@ -13,6 +13,8 @@ const Search = () => {
   const { artists, albums, playlists, songs } = useRecoilValue(
     searchResultsState(query)
   );
+
+  console.log(artists, albums);
 
   if (
     query &&
@@ -52,7 +54,7 @@ const Search = () => {
 
   return (
     <div className="px-4">
-      {artists.length && songs.length && (
+      {artists.length > 0 && songs.length > 0 && (
         <Container fluid className="p-0 my-4">
           <Row className="p-0 m-0">
             <TopResultsSection artists={artists} />
@@ -73,6 +75,33 @@ const Search = () => {
             </Col>
           </Row>
         </Container>
+      )}
+
+      {artists.length > 0 && (
+        <HomeSection
+          listInfo={artists}
+          title="Artists"
+          type="artist"
+          showAll={false}
+        />
+      )}
+
+      {albums.length > 0 && (
+        <HomeSection
+          listInfo={albums}
+          title={"Albums"}
+          type="album"
+          showAll={false}
+        />
+      )}
+
+      {playlists.length > 0 && (
+        <HomeSection
+          listInfo={playlists}
+          title={"Playlists"}
+          type="playlist"
+          showAll={false}
+        />
       )}
     </div>
   );

@@ -124,3 +124,16 @@ export const searchResultsState = selectorFamily({
     };
   },
 });
+
+export const artistState = atomFamily({
+  key: "artist",
+  default: selectorFamily({
+    key: "artist/Default",
+    get: (id) => async () => {
+      const response = await axios.get(
+        `http://localhost:3000/artists/?id=${id}`
+      );
+      return response.data[0];
+    },
+  }),
+});
