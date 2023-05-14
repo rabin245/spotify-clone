@@ -12,6 +12,7 @@ import { RecoilRoot } from "recoil";
 import ProtectedAuthRoute from "./routes/ProtectedAuthRoute.jsx";
 import NeedAuthRoute from "./routes/NeedAuthRoute.jsx";
 import Playlist from "./pages/Playlist.jsx";
+import Album from "./pages/Album.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/album/:id",
-        element: <div>Album</div>,
+        element: <Album />,
       },
       {
         path: "/library",
