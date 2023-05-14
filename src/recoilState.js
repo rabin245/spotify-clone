@@ -106,13 +106,15 @@ export const searchResultsState = selectorFamily({
 
     const response = await Promise.all(artistPromises);
 
-    let artists = response.reduce((acc, artist) => {
-      const existingArtist = acc.find((a) => a.id === artist[0].id);
-      if (!existingArtist) {
-        acc.push(artist[0]);
-      }
-      return acc;
-    });
+    let artists = response.length
+      ? response.reduce((acc, artist) => {
+          const existingArtist = acc.find((a) => a.id === artist[0].id);
+          if (!existingArtist) {
+            acc.push(artist[0]);
+          }
+          return acc;
+        })
+      : [];
 
     return {
       artists: artists,
