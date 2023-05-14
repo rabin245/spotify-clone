@@ -24,8 +24,12 @@ const SongsTable = ({ songsList, type = "playlist" }) => {
               </div>
             </th>
             <th>Title</th>
-            <th>Album</th>
-            <th>Date Added</th>
+            {type === "playlist" ? (
+              <>
+                <th>Album</th>
+                <th>Date Added</th>
+              </>
+            ) : null}
             <th
               style={{
                 textAlign: "right",
@@ -43,7 +47,12 @@ const SongsTable = ({ songsList, type = "playlist" }) => {
         </thead>
         <tbody>
           {songsList.map((songid, index) => (
-            <TableSongCard key={songid} songid={songid} index={index + 1} />
+            <TableSongCard
+              key={songid}
+              songid={songid}
+              index={index + 1}
+              type={type}
+            />
           ))}
         </tbody>
       </Table>

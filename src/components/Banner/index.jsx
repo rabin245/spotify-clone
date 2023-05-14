@@ -34,7 +34,9 @@ const Banner = ({
             xl={"auto"}
             className="playlistpage--banner-info d-flex flex-column justify-content-between text-white"
           >
-            <h6 className="fw-bold mt-5">Playlist</h6>
+            <h6 className="fw-bold mt-5">
+              {type === "playlist" ? "Playlist" : "Album"}
+            </h6>
             <h1
               className="fw-bold"
               style={{

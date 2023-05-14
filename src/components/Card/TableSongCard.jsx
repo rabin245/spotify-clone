@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { BsFillPlayFill } from "react-icons/bs";
 import { UncontrolledTooltip } from "reactstrap";
 
-const TableSongCard = ({ songid, index }) => {
+const TableSongCard = ({ songid, index, type }) => {
   const song = useRecoilValue(songState(songid));
   const [currentSelectedSong, setCurrentSelectedSong] = useRecoilState(
     currentSelectedSongAtom
@@ -58,15 +58,19 @@ const TableSongCard = ({ songid, index }) => {
           </div>
         </div>
       </td>
-      <td>
-        <Link
-          to={`/album/${song.albumId}`}
-          className="playlistpage--table-row-link"
-        >
-          {song.album}
-        </Link>
-      </td>
-      <td>4 days ago</td>
+      {type === "playlist" && (
+        <>
+          <td>
+            <Link
+              to={`/album/${song.albumId}`}
+              className="playlistpage--table-row-link"
+            >
+              {song.album}
+            </Link>
+          </td>
+          <td>4 days ago</td>
+        </>
+      )}
       <td>
         <div
           style={{

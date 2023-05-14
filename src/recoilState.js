@@ -80,9 +80,9 @@ export const albumState = atomFamily({
     key: "album/Default",
     get:
       (id) =>
-      async ({ get }) => {
+      ({ get }) => {
         const albums = get(defaultAlbumsAtom);
-        return albums.find((album) => album.id === id);
+        return albums.find((a) => a.id === id);
       },
   }),
 });
