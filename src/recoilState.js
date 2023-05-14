@@ -12,15 +12,23 @@ export const defaultPlaylistsAtom = atom({
     key: "defaultPlaylists/Default",
     get: async () => {
       const response = await axios.get("http://localhost:3000/playlists");
-      return response.data;
+      const playlists = response.data;
+      // randomize the order of the playlists
+      for (let i = playlists.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = playlists[i];
+        playlists[i] = playlists[j];
+        playlists[j] = temp;
+      }
+      return playlists;
     },
   }),
 });
 
 export const playlistState = atomFamily({
-  key: "playlists",
+  key: "playlist",
   default: selectorFamily({
-    key: "playlists/Default",
+    key: "playlist/Default",
     get:
       (id) =>
       async ({ get }) => {
@@ -45,4 +53,36 @@ export const songState = atomFamily({
 export const currentSelectedSongAtom = atom({
   key: "currentSelectedSong",
   default: null,
+});
+
+export const defaultAlbumsAtom = atom({
+  key: "defaultAlbums",
+  default: selector({
+    key: "defaultAlbums/Default",
+    get: async () => {
+      const response = await axios.get("http://localhost:3000/albums");
+      const albums = response.data;
+      // randomize the order of the albums
+      for (let i = albums.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = albums[i];
+        albums[i] = albums[j];
+        albums[j] = temp;
+      }
+      return albums;
+    },
+  }),
+});
+
+export const albumState = atomFamily({
+  key: "album",
+  default: selectorFamily({
+    key: "album/Default",
+    get:
+      (id) =>
+      async ({ get }) => {
+        const albums = get(defaultAlbumsAtom);
+        return albums.find((album) => album.id === id);
+      },
+  }),
 });
