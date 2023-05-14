@@ -1,4 +1,4 @@
-import HomeSection from "../components/Section/HomeSection";
+import { HomeSection } from "../components/Section/HomeSection";
 import { useRecoilValue } from "recoil";
 import { defaultAlbumsAtom, defaultPlaylistsAtom } from "../recoilState";
 

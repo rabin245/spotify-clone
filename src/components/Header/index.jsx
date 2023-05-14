@@ -25,13 +25,10 @@ export default function Header() {
   const handleSearch = (e) => {
     setSearch(e.target.value);
 
-    if (e.target.value.length > 2) {
-      navigate(`/search/${e.target.value}`, { replace: true });
-    }
+    navigate(`/search/${e.target.value}`, { replace: true });
   };
 
   const user = useRecoilValue(loggedInUserAtom);
-  // console.log(user);
 
   const navItems = user ? (
     <Nav className="d-flex align-items-center">
