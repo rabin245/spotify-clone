@@ -242,6 +242,18 @@ td {
   display: none !important;
 }
 
+.search--songs-card:hover {
+  background-color: #2a2b2b !important;
+}
+
+.search--songs-card-hidden-icon {
+  visibility: hidden !important;
+}
+
+.search--songs-card:hover .search--songs-card-hidden-icon {
+  visibility: visible !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;
