@@ -1,10 +1,19 @@
-import { Container, Input, Nav, NavItem, Navbar } from "reactstrap";
+import {
+  Container,
+  Input,
+  InputGroup,
+  InputGroupText,
+  Nav,
+  NavItem,
+  Navbar,
+} from "reactstrap";
 import { AvatarButton, Button } from "../Button";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { loggedInUserAtom } from "../../recoilState";
 import { useRecoilValue } from "recoil";
+import { FaSearch } from "react-icons/fa";
 
 export default function Header() {
   const match = useMatch("/search/*");
@@ -83,16 +92,21 @@ export default function Header() {
                     } `}
         >
           {match && (
-            <Input
-              autoFocus={true}
-              type="search"
-              name="search"
-              id="search"
-              value={search}
-              onChange={handleSearch}
-              placeholder="What do you want to listen to?"
-              className="header--search ms-2 rounded-5 shadow-none bg-dark text-white border-0 w-50"
-            />
+            <InputGroup className="header--search ms-2 rounded-5 bg-dark w-50">
+              <InputGroupText className="bg-transparent text-white border-0 p-0 ps-3">
+                <FaSearch size={18} />
+              </InputGroupText>
+              <Input
+                autoFocus={true}
+                type="search"
+                name="search"
+                id="search"
+                value={search}
+                onChange={handleSearch}
+                placeholder="What do you want to listen to?"
+                className="rounded-5 shadow-none bg-transparent text-white border-0"
+              />
+            </InputGroup>
           )}
 
           {navItems}

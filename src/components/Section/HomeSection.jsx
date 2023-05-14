@@ -2,8 +2,6 @@ import { Container } from "reactstrap";
 import { PlaylistCard } from "../Card";
 
 const HomeSection = ({ title, playlistInfo }) => {
-  console.log(playlistInfo);
-
   return (
     <Container fluid className="p-0 my-4">
       <div className="d-flex justify-content-between align-items-end">

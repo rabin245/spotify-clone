@@ -4,7 +4,6 @@ import { defaultPlaylistsAtom } from "../recoilState";
 
 const Home = () => {
   const defaultPlaylists = useRecoilValue(defaultPlaylistsAtom);
-  // console.log(defaultPlaylists);
 
   return (
     <div className="homePage px-4">
