@@ -1,6 +1,6 @@
 import { Container, Table } from "reactstrap";
 import { BsStopwatch } from "react-icons/bs";
-import TableSongCard from "../Card/TableSongCard";
+import { TableSongCard } from "../Card";
 import { currentSelectedSongAtom } from "../../recoilState";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
