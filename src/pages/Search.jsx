@@ -80,7 +80,16 @@ const Search = () => {
                 <h2 className="mb-2 fw-bold">Songs</h2>
 
                 {[...songs].splice(0, 4).map((song) => (
-                  <SongCard key={song.id} {...song} />
+                  <SongCard
+                    key={song.id}
+                    name={song.name}
+                    artist={song.artist}
+                    duration={song.duration}
+                    image_url={song.image_url}
+                    playSong={() => {
+                      startTransition(() => setCurrentPlayingSong(song.id));
+                    }}
+                  />
                 ))}
               </div>
             </Col>

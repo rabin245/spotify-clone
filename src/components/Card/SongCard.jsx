@@ -1,14 +1,14 @@
 import { AiOutlineEllipsis, AiOutlineHeart } from "react-icons/ai";
 import { BsPlayFill } from "react-icons/bs";
 
-const SongCard = ({ image_url, name, artist, duration }) => {
+const SongCard = ({ image_url, name, artist, duration, playSong }) => {
   return (
     <>
       <div className="search--songs-card d-flex align-items-center p-1 rounded-2">
         <div className="d-flex align-items-center me-auto">
           <div className="search--songs-card-img-wrapper">
             <img src={image_url} style={{ width: "40px", height: "40px" }} />
-            <div className="search--songs-card-img-overlay">
+            <div className="search--songs-card-img-overlay" onClick={playSong}>
               <BsPlayFill
                 size={20}
                 fill="white"
