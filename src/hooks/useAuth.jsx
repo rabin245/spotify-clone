@@ -4,11 +4,12 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loggedInUserAtom } from "../recoilState";
 import saveToSession from "../utils/saveToSession";
+import { setDoc, doc } from "firebase/firestore";
 
 const useAuth = () => {
   const [loading, setLoading] = useState(false);
@@ -62,10 +63,17 @@ const useAuth = () => {
       const user = {
         uid: response.user.uid,
         email: response.user.email,
+        accessToken: response.user.accessToken,
         // displayName: username,
       };
 
       saveToSession("loggedInUser", user);
+
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        likedSongs: [],
+        playlists: [],
+      });
 
       navigate(0, { replace: true });
     } catch (error) {
@@ -92,6 +100,7 @@ const useAuth = () => {
       const user = {
         uid: response.user.uid,
         email: response.user.email,
+        accessToken: response.user.accessToken,
         // displayName: username,
       };
 
