@@ -137,3 +137,18 @@ export const artistState = atomFamily({
     },
   }),
 });
+
+export const currentPlayingSongAtom = atom({
+  key: "currentPlayingSong",
+  default: null,
+});
+
+export const currentPlayingSongState = selector({
+  key: "currentPlayingSongDetail",
+  get: ({ get }) => {
+    const currentPlayingSong = get(currentPlayingSongAtom);
+    if (!currentPlayingSong) return null;
+    const songDetails = get(songState(currentPlayingSong));
+    return songDetails;
+  },
+});
