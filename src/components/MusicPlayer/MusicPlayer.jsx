@@ -22,7 +22,7 @@ const MusicPlayer = () => {
     <>
       <Container
         fluid
-        className="bg-black z-3 position-fixed bottom-0 text-secondary p-0 m-0 "
+        className="bg-black z-3 position-fixed bottom-0 text-secondary p-0 m-0 shadow"
       >
         <Row className="d-flex justify-content-between p-1 align-items-center m-0">
           <Col className="m-0">

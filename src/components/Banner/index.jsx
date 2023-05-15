@@ -10,6 +10,7 @@ const Banner = ({
   description,
   numberOfSongs,
   type = "playlist",
+  play,
 }) => {
   return (
     <div className="playlistpage--banner">
@@ -74,7 +75,7 @@ const Banner = ({
 
         <div className="playlistpage--banner-buttons d-flex gap-4 align-items-center py-4 px-4">
           <div className="playlistpage--banner-button">
-            <PlayButton size={35} />
+            <PlayButton size={35} play={play} />
           </div>
           <div className="playlistpage--banner-button">
             <AiOutlineHeart size={35} />
