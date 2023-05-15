@@ -32,7 +32,9 @@ function App() {
             </Suspense>
             <Footer />
           </Col>
-          <MusicPlayer />
+          <Suspense>
+            <MusicPlayer />
+          </Suspense>
         </Row>
       </Container>
     </>
