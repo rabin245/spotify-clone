@@ -21,6 +21,11 @@ const SectionCard = ({ id, type = "playlist", playSong }) => {
     navigate(linkTo);
   };
 
+  const handlePlay = (e) => {
+    e.stopPropagation();
+    playSong();
+  };
+
   if (type === "artist")
     return (
       <Col lg={2} md={4} xs={3} className="p-0">
@@ -39,7 +44,7 @@ const SectionCard = ({ id, type = "playlist", playSong }) => {
                 {cardInfo.name}
               </CardText>
             </CardBody>
-            <PlayButton type="card" play={() => {}} />
+            <PlayButton type="card" play={(e) => handlePlay(e)} />
           </div>
         </Card>
       </Col>
@@ -57,13 +62,7 @@ const SectionCard = ({ id, type = "playlist", playSong }) => {
             alt="..."
             className="w-100 rounded-3 shadow"
           />
-          <PlayButton
-            type="card"
-            play={(e) => {
-              e.stopPropagation();
-              playSong();
-            }}
-          />
+          <PlayButton type="card" play={(e) => handlePlay(e)} />
         </div>
         <CardBody className="m-0 p-0 mt-4">
           <CardText className="cardTitle m-0 fw-bold fs-5">

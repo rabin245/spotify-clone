@@ -35,6 +35,10 @@ const HomeSection = ({
             id={item.id}
             type={type}
             playSong={() => {
+              if (type === "artist") {
+                console.log("no songs data for each artist");
+                return;
+              }
               startTransition(() => setCurrentPlayingSong(item.songs[0]));
             }}
           />
