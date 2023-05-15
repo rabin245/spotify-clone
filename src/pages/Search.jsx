@@ -1,9 +1,14 @@
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { SectionCard, SongCard } from "../components/Card";
-import { useRecoilValue } from "recoil";
-import { defaultPlaylistsAtom, searchResultsState } from "../recoilState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  currentPlayingSongAtom,
+  defaultPlaylistsAtom,
+  searchResultsState,
+} from "../recoilState";
 import { HomeSection, TopResultsSection } from "../components/Section";
+import { startTransition } from "react";
 
 const Search = () => {
   const { query } = useParams();
@@ -14,7 +19,7 @@ const Search = () => {
     searchResultsState(query)
   );
 
-  console.log(artists, albums);
+  const setCurrentPlayingSong = useSetRecoilState(currentPlayingSongAtom);
 
   if (
     query &&
@@ -46,7 +51,13 @@ const Search = () => {
         </div>
         <div className="d-flex mt-3 gap-2 px-1 flex-wrap">
           {defaultPlaylists.map((playlist) => (
-            <SectionCard key={playlist.id} id={playlist.id} />
+            <SectionCard
+              key={playlist.id}
+              id={playlist.id}
+              playSong={() => {
+                startTransition(() => setCurrentPlayingSong(playlist.songs[0]));
+              }}
+            />
           ))}
         </div>
       </Container>
