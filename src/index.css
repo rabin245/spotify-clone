@@ -217,6 +217,14 @@ td {
   text-decoration: underline !important;
 }
 
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
 .playlistpage--table-row-follow {
   visibility: hidden !important;
 }
@@ -230,19 +238,18 @@ td {
 .playlistpage--table-row-index-wrapper {
   margin-left: 0.8rem !important;
   cursor: pointer;
+  position: relative !important;
 }
 
 .playlistpage--table-row-playicon {
-  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  transform: translate(-20%, -50%);
 }
 
 .playlistpage--table-row:hover .playlistpage--table-row-playicon,
 .playlistpage--table-row-active .playlistpage--table-row-playicon {
-  display: block !important;
-}
-
-.playlistpage--table-row-index {
-  padding: 2px !important;
+  visibility: visible !important;
 }
 
 .playlistpage--table-row:hover .playlistpage--table-row-index,
