@@ -37,8 +37,8 @@ const SongsTable = ({ songsList, type = "playlist" }) => {
             <th>Title</th>
             {type === "playlist" ? (
               <>
-                <th>Album</th>
-                <th>Date Added</th>
+                <th className="d-none d-sm-table-cell">Album</th>
+                <th className="d-none d-lg-table-cell">Date Added</th>
               </>
             ) : null}
             <th

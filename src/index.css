@@ -217,6 +217,14 @@ td {
   text-decoration: underline !important;
 }
 
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
 .playlistpage--table-row-follow {
   visibility: hidden !important;
 }
