@@ -1,5 +1,5 @@
-import { useRecoilValue } from "recoil";
-import { songState } from "../../recoilState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { currentPlayingSongAtom, songState } from "../../recoilState";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BsFillPlayFill, BsThreeDots } from "react-icons/bs";
@@ -14,6 +14,12 @@ const TableSongCard = ({
 }) => {
   const song = useRecoilValue(songState(songid));
 
+  const setCurrentPlayingSong = useSetRecoilState(currentPlayingSongAtom);
+
+  const playSong = () => {
+    setCurrentPlayingSong(songid);
+  };
+
   return (
     <tr
       key={songid}
@@ -27,7 +33,7 @@ const TableSongCard = ({
       <td>
         <div className="playlistpage--table-row-index-wrapper">
           <span className="playlistpage--table-row-index">{index}</span>
-          <span className="playlistpage--table-row-playicon">
+          <span className="playlistpage--table-row-playicon" onClick={playSong}>
             <BsFillPlayFill size={20} />
           </span>
         </div>

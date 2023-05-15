@@ -262,6 +262,22 @@ td {
   visibility: visible !important;
 }
 
+.line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+}
+
+.music-bar-icons {
+  color: #b3b3b3 !important;
+}
+
+.music-bar-icons:hover {
+  color: white !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;
