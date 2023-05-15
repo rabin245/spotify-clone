@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import { Suspense } from "react";
+import { MusicPlayer } from "./components/MusicPlayer";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             </Suspense>
             <Footer />
           </Col>
+          <Suspense>
+            <MusicPlayer />
+          </Suspense>
         </Row>
       </Container>
     </>

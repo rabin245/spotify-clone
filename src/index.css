@@ -262,6 +262,43 @@ td {
   visibility: visible !important;
 }
 
+.line-clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+}
+
+.music-bar-icons {
+  color: #b3b3b3 !important;
+}
+
+.music-bar-icons:hover {
+  color: white !important;
+}
+
+.search--songs-card-img-wrapper {
+  position: relative !important;
+}
+
+.search--songs-card-img-overlay {
+  display: none !important;
+}
+
+.search--songs-card:hover .search--songs-card-img-overlay {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;

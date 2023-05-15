@@ -20,7 +20,10 @@ export default function TopResultsSection({ artists }) {
               <Badge color="dark" className="rounded-5 fw-bold">
                 Artist
               </Badge>
-              <PlayButton type="card" />
+              <PlayButton
+                type="card"
+                play={() => console.log("sorry no songs data for each artist")}
+              />
             </div>
           </CardBody>
         </Card>
