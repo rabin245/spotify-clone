@@ -306,6 +306,10 @@ td {
   cursor: pointer;
 }
 
+.sidebar--bottom-links {
+  margin-bottom: 6rem !important;
+}
+
 @media screen and (max-width: 768px) {
   .homeSection--cards-wrapper {
     overflow-x: scroll !important;

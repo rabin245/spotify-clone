@@ -41,7 +41,8 @@ export default function Sidebar() {
               </div>
             </div>
 
-            <Container className="mb-4">
+            {/* conditionally select class to adjust margin bottom */}
+            <Container className="sidebar--bottom-links">
               <div className="fs-6 text-gray d-flex flex-column ">
                 <div className="text-start mb-3">
                   <span className="fs-6 fw-light me-2">Legal </span>
