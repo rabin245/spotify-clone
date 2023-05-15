@@ -39,7 +39,7 @@ const TableSongCard = ({
         </div>
       </td>
       <td>
-        <div className="d-flex align-items-center">
+        <div className="playlistpage--table-row-title d-flex align-items-center">
           <img
             src={song.image_url}
             alt="..."
@@ -53,12 +53,12 @@ const TableSongCard = ({
             <h6 className="m-0 fw-bold text-white">
               <Link
                 to={`/album/${song.albumId}`}
-                className="playlistpage--table-row-link"
+                className="playlistpage--table-row-link line-clamp-2"
               >
                 {song.name}
               </Link>
             </h6>
-            <p className="m-0">
+            <p className="line-clamp-2 m-0">
               {song.artist}
               {song.featuredArtists.length > 0 && (
                 <span>, {song.featuredArtists.join(", ")}</span>
@@ -69,7 +69,7 @@ const TableSongCard = ({
       </td>
       {type === "playlist" && (
         <>
-          <td>
+          <td className="d-none d-sm-table-cell">
             <Link
               to={`/album/${song.albumId}`}
               className="playlistpage--table-row-link"
@@ -77,7 +77,7 @@ const TableSongCard = ({
               {song.album}
             </Link>
           </td>
-          <td>4 days ago</td>
+          <td className="d-none d-lg-table-cell">4 days ago</td>
         </>
       )}
       <td>
