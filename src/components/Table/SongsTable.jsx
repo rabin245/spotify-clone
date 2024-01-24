@@ -12,7 +12,7 @@ const SongsTable = ({ songsList, type = "playlist" }) => {
 
   useEffect(() => {
     setCurrentSelectedSong(null);
-  }, [songsList, setCurrentSelectedSong]);
+  }, [songsList]);
 
   return (
     <Container fluid className="p-4 m-0">

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
-  // eslint-disable-next-line no-unused-vars
   updateProfile,
   signInWithEmailAndPassword,
 } from "firebase/auth";
