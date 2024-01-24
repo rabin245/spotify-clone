@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  // eslint-disable-next-line no-unused-vars
   const [rememberMe, setRememberMe] = useState(false);
 
   const [userInputs, setUserInputs] = useState({
