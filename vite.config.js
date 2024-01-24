@@ -8,13 +8,14 @@ export default defineConfig(() => {
   return ({
     plugins: [react()],
     server: {
-      proxy: {
-        '/api': {
-          target: env.VITE_JSONSERVER_URL,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
-        },
-      },
+      // server proxy didnot work with netlify
+      // proxy: {
+      //   '/api': {
+      //     target: env.VITE_JSONSERVER_URL,
+      //     changeOrigin: true,
+      //     rewrite: (path) => path.replace(/^\/api/, ''),
+      //   },
+      // },
     }
   })
 })

@@ -1,6 +1,8 @@
 import { atom, selector, atomFamily, selectorFamily } from "recoil";
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_JSONSERVER_URL;
+
 export const loggedInUserAtom = atom({
   key: "loggedInUser",
   default: JSON.parse(sessionStorage.getItem("loggedInUser")) || null,
@@ -11,7 +13,7 @@ export const defaultPlaylistsAtom = atom({
   default: selector({
     key: "defaultPlaylists/Default",
     get: async () => {
-      const response = await axios.get("/api/playlists");
+      const response = await axios.get(`${BASE_URL}/playlists`);
       const playlists = response.data;
       // randomize the order of the playlists
       for (let i = playlists.length - 1; i > 0; i--) {
@@ -32,7 +34,7 @@ export const playlistState = atomFamily({
     get:
       (id) =>
         async ({ get }) => {
-          // const response = await axios.get(`/api/playlists/${id}`);
+          // const response = await axios.get(`${BASE_URL}/playlists/${id}`);
           // return response.data;
           const playlists = get(defaultPlaylistsAtom);
           return playlists.find((playlist) => playlist.id === id);
@@ -44,7 +46,7 @@ export const songState = atomFamily({
   key: "song",
   default: selectorFamily({
     get: (id) => async () => {
-      const response = await axios.get(`/api/songs/${id}`);
+      const response = await axios.get(`${BASE_URL}/songs/${id}`);
       return response.data;
     },
   }),
@@ -60,7 +62,7 @@ export const defaultAlbumsAtom = atom({
   default: selector({
     key: "defaultAlbums/Default",
     get: async () => {
-      const response = await axios.get("/api/albums");
+      const response = await axios.get(`${BASE_URL}/albums`);
       const albums = response.data;
       // randomize the order of the albums
       for (let i = albums.length - 1; i > 0; i--) {
@@ -90,16 +92,16 @@ export const albumState = atomFamily({
 export const searchResultsState = selectorFamily({
   key: "searchResults",
   get: (query) => async () => {
-    const albums = await axios.get(`/api/albums?q=${query}`);
-    const songs = await axios.get(`/api/songs?q=${query}`);
+    const albums = await axios.get(`${BASE_URL}/albums?q=${query}`);
+    const songs = await axios.get(`${BASE_URL}/songs?q=${query}`);
     const playlists = await axios.get(
-      `/api/playlists?q=${query}`
+      `${BASE_URL}/playlists?q=${query}`
     );
 
     const artistIds = songs.data.map((song) => song.artistId);
     const artistPromises = artistIds.map(async (id) => {
       const response = await axios.get(
-        `/api/artists/?id=${id}`
+        `${BASE_URL}/artists/?id=${id}`
       );
       return response.data;
     });
@@ -131,7 +133,7 @@ export const artistState = atomFamily({
     key: "artist/Default",
     get: (id) => async () => {
       const response = await axios.get(
-        `/api/artists/?id=${id}`
+        `${BASE_URL}/artists/?id=${id}`
       );
       return response.data[0];
     },
